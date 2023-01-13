@@ -1,4 +1,5 @@
 import Header from 'components/Common/Header';
+import Footer from 'components/Footer';
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
 
@@ -8,6 +9,7 @@ const Home = () => {
       <Header />
       <Tags />
       <PostGrid />
+      <Footer />
     </>
   );
 };
