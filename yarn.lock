@@ -866,6 +866,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.48.1
     "@typescript-eslint/parser": ^5.48.1
     "@yarnpkg/sdks": ^3.0.0-rc.35
+    emotion-reset: ^3.0.1
     eslint: ^8.0.1
     eslint-config-airbnb-typescript: ^17.0.0
     eslint-config-prettier: ^8.6.0
@@ -882,7 +883,6 @@ __metadata:
     prettier: ^2.8.2
     react: ^18.2.0
     react-dom: ^18.2.0
-    styled-reset: ^4.4.5
     typescript: ^4.9.4
   languageName: unknown
   linkType: soft
@@ -1381,6 +1381,15 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
+  languageName: node
+  linkType: hard
+
+"emotion-reset@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "emotion-reset@npm:3.0.1"
+  peerDependencies:
+    "@emotion/react": ">=11"
+  checksum: 788cfbf6f31fadd22da2d61558c5f7b30da3d355d646c28e0b48f453bdd6d86dd3c55d0d8f55e3cf37c09446d597ac1ada4273244c4141467024a70b1e178fa8
   languageName: node
   linkType: hard
 
@@ -3475,15 +3484,6 @@ __metadata:
     babel-plugin-macros:
       optional: true
   checksum: 523a33b38603492547e861b98e29c873939b04e15fbe5ef16132c6f1e15958126647983c7d4675325038b428a5e91183d996e90141b18bdd1bbadf6e2c45b2fa
-  languageName: node
-  linkType: hard
-
-"styled-reset@npm:^4.4.5":
-  version: 4.4.5
-  resolution: "styled-reset@npm:4.4.5"
-  peerDependencies:
-    styled-components: ">=4.0.0 || >=5.0.0"
-  checksum: 3cd86e5d55edc26f254951dc0efe5ec2c8bed8f9056cda94e8808365a3809366890f31165bacc2663a67c3aee1cce35399c5c181142457035c91262341f943cf
   languageName: node
   linkType: hard
 

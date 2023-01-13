@@ -1,15 +1,16 @@
 import { Global, css } from '@emotion/react';
-import { reset } from 'styled-reset';
+import emotionReset from 'emotion-reset';
 
 const style = css`
-  ${reset}
+  ${emotionReset}
   * {
     box-sizing: border-box;
   }
   body {
-    background-color: #343a40;
+    background-color: #202125;
+    color: white;
     position: relative;
-    max-width: 37.5rem;
+    max-width: 52rem;
     margin: 0 auto;
     min-height: 42.5rem;
     padding: 0;
@@ -20,7 +21,11 @@ const style = css`
     padding: 0;
     cursor: pointer;
   }
+  a {
+    text-decoration: none;
+  }
 `;
+
 const GlobalStyle = () => {
   return <Global styles={style} />;
 };

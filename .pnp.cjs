@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.48.1"],\
             ["@typescript-eslint/parser", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.48.1"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.35"],\
+            ["emotion-reset", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:3.0.1"],\
             ["eslint", "npm:8.31.0"],\
             ["eslint-config-airbnb-typescript", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:17.0.0"],\
             ["eslint-config-prettier", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:8.6.0"],\
@@ -51,7 +52,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:18.2.0"],\
-            ["styled-reset", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:4.4.5"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
           ],\
           "linkType": "SOFT"\
@@ -1179,6 +1179,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.48.1"],\
             ["@typescript-eslint/parser", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.48.1"],\
             ["@yarnpkg/sdks", "npm:3.0.0-rc.35"],\
+            ["emotion-reset", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:3.0.1"],\
             ["eslint", "npm:8.31.0"],\
             ["eslint-config-airbnb-typescript", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:17.0.0"],\
             ["eslint-config-prettier", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:8.6.0"],\
@@ -1195,7 +1196,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.8.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:18.2.0"],\
-            ["styled-reset", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:4.4.5"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
           ],\
           "linkType": "SOFT"\
@@ -1798,6 +1798,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["doctrine", "npm:3.0.0"],\
             ["esutils", "npm:2.0.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["emotion-reset", [\
+        ["npm:3.0.1", {\
+          "packageLocation": "./.yarn/cache/emotion-reset-npm-3.0.1-061e1e27b7-788cfbf6f3.zip/node_modules/emotion-reset/",\
+          "packageDependencies": [\
+            ["emotion-reset", "npm:3.0.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:3.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/emotion-reset-virtual-017797d1a7/0/cache/emotion-reset-npm-3.0.1-061e1e27b7-788cfbf6f3.zip/node_modules/emotion-reset/",\
+          "packageDependencies": [\
+            ["emotion-reset", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:3.0.1"],\
+            ["@emotion/react", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:11.10.5"],\
+            ["@types/emotion__react", null]\
+          ],\
+          "packagePeers": [\
+            "@emotion/react",\
+            "@types/emotion__react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4346,28 +4368,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react",\
             "babel-plugin-macros",\
             "react"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["styled-reset", [\
-        ["npm:4.4.5", {\
-          "packageLocation": "./.yarn/cache/styled-reset-npm-4.4.5-bd729c3b44-3cd86e5d55.zip/node_modules/styled-reset/",\
-          "packageDependencies": [\
-            ["styled-reset", "npm:4.4.5"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:4.4.5", {\
-          "packageLocation": "./.yarn/__virtual__/styled-reset-virtual-d71fa412a8/0/cache/styled-reset-npm-4.4.5-bd729c3b44-3cd86e5d55.zip/node_modules/styled-reset/",\
-          "packageDependencies": [\
-            ["styled-reset", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:4.4.5"],\
-            ["@types/styled-components", null],\
-            ["styled-components", null]\
-          ],\
-          "packagePeers": [\
-            "@types/styled-components",\
-            "styled-components"\
           ],\
           "linkType": "HARD"\
         }]\

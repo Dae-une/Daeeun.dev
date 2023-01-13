@@ -3,6 +3,6 @@ import theme from './Theme';
 
 type ThemeType = typeof theme;
 
-declare module '@emtion/react' {
+declare module '@emotion/react' {
   export interface Theme extends ThemeType {}
 }
