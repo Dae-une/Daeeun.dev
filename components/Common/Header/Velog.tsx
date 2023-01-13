@@ -1,19 +1,18 @@
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
-const Logo = () => {
+const Velog = () => {
   return (
-    <IconText href="/">
-      <span>Dae-eun.</span>
+    <IconText href="https://velog.io/@dae_eun2">
+      <span>Velog.</span>
     </IconText>
   );
 };
 
-export default Logo;
+export default Velog;
 
 const IconText = styled(Link)`
-  font-size: 24px;
+  font-size: 1rem;
   font-weight: 700;
-  font-style: italic;
   color: inherit;
 `;

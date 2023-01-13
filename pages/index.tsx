@@ -1,10 +1,13 @@
 import Header from 'components/Common/Header';
-import React from 'react';
+import PostGrid from 'components/PostGrid';
+import Tags from 'components/Tags';
 
 const Home = () => {
   return (
     <>
       <Header />
+      <Tags />
+      <PostGrid />
     </>
   );
 };

@@ -3,16 +3,16 @@ import Link from 'next/link';
 
 const About = () => {
   return (
-    <Link href="https://portfolio-dae-une.vercel.app/" target="_blank" rel="noreferrer">
-      <IconText>About.</IconText>
-    </Link>
+    <IconText href="https://portfolio-dae-une.vercel.app/" target="_blank" rel="noreferrer">
+      <span>About.</span>
+    </IconText>
   );
 };
 
 export default About;
 
-const IconText = styled.div`
+const IconText = styled(Link)`
   font-size: 1rem;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.white[100]};
+  color: inherit;
 `;

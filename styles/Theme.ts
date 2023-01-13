@@ -2,10 +2,17 @@ import { css } from '@emotion/react';
 
 const colors = {
   gray: {
-    800: '#202125',
+    1: '#34373d',
+    2: '#202125',
+  },
+  yellow: {
+    1: '#a9a218',
   },
   white: {
-    100: '#FFFFFF',
+    1: '#FFFFFF',
+  },
+  purple: {
+    1: '#8482F2',
   },
 };
 
