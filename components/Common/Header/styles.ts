@@ -13,7 +13,9 @@ export const HeaderWrapper = styled.div`
   z-index: 10;
 `;
 
-export const LogoWrpper = styled.div``;
+export const SVGWrpper = styled.div`
+  cursor: pointer;
+`;
 
 export const AboutWrpper = styled.div`
   display: flex;

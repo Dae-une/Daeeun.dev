@@ -1,20 +1,32 @@
 import About from './About';
-import Logo from './Logo';
 import * as Style from './styles';
 import Velog from './Velog';
+import Hamburger from '../../../public/svg/hamburger.svg';
+import { useCallback, useState } from 'react';
+import SideBar from 'components/SideBar/SideBar';
 
 const Header = () => {
+  const [showSideBar, setShowSideBar] = useState(false);
+
+  const toggleSideBar = useCallback(() => {
+    setShowSideBar((prev) => !prev);
+  }, []);
+
+  console.log(showSideBar);
   return (
-    <Style.HeaderWrapper>
-      <Style.LogoWrpper>
-        <Logo />
-      </Style.LogoWrpper>
-      <Style.AboutWrpper>
-        <Velog />
-        <About />
-        <div>Darkmode</div>
-      </Style.AboutWrpper>
-    </Style.HeaderWrapper>
+    <>
+      <Style.HeaderWrapper>
+        <Style.SVGWrpper onClick={toggleSideBar}>
+          <Hamburger />
+        </Style.SVGWrpper>
+        <Style.AboutWrpper>
+          <Velog />
+          <About />
+          <div>Darkmode</div>
+        </Style.AboutWrpper>
+      </Style.HeaderWrapper>
+      <SideBar isOpen={showSideBar} toggle={toggleSideBar} />
+    </>
   );
 };
 
