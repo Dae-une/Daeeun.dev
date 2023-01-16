@@ -3,7 +3,7 @@ import * as Style from './styles';
 import Velog from './Velog';
 import Hamburger from '../../../public/svg/hamburger.svg';
 import { useCallback, useState } from 'react';
-import SideBar from 'components/SideBar/SideBar';
+import SideBar from 'components/SideBar';
 
 const Header = () => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -12,7 +12,6 @@ const Header = () => {
     setShowSideBar((prev) => !prev);
   }, []);
 
-  console.log(showSideBar);
   return (
     <>
       <Style.HeaderWrapper>
@@ -22,7 +21,6 @@ const Header = () => {
         <Style.AboutWrpper>
           <Velog />
           <About />
-          <div>Darkmode</div>
         </Style.AboutWrpper>
       </Style.HeaderWrapper>
       <SideBar isOpen={showSideBar} toggle={toggleSideBar} />

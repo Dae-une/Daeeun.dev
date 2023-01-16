@@ -4,8 +4,10 @@ import styled from '@emotion/styled';
 export const PostCard = styled.li`
   height: 10rem;
   width: 100%;
-  border-bottom: 1px solid ${(props) => props.theme.colors.gray[1]};
+  border: 1px solid ${(props) => props.theme.colors.gray[1]};
+  border-radius: 6px;
   padding: 2rem 1rem;
+  margin-bottom: 1.2rem;
 `;
 
 export const PostTime = styled.div`

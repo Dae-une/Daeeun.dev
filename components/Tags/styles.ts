@@ -8,7 +8,7 @@ export const TagWrapper = styled.div`
 export const TagTitle = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 3.3rem;
+  font-size: 2.3rem;
   font-style: italic;
   font-weight: bold;
 `;
@@ -19,20 +19,17 @@ export const TagCount = styled.div`
 
 export const TagList = styled.div`
   display: flex;
-  width: 100%;
-  padding: 0 6rem;
   justify-content: center;
-  align-items: center;
-  gap: 2rem;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  margin-top: 3rem;
+  padding: 0 20px;
+  width: 100%;
 `;
 
 export const TagItem = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: flex;
-  & > span {
-    font-size: 1.4rem;
-  }
 `;

@@ -1,4 +1,4 @@
-import { SideBarProps } from './SideBar';
+import { SideBarProps } from '.';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 
