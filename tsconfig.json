@@ -30,7 +30,8 @@
     "svg.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js"
+    "next.config.js",
+    "mdx.d.ts"
   ],
   "exclude": [
     "node_modules"

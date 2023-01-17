@@ -10,7 +10,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
   return (
     <Style.PostCard>
       <Style.PostTime>{post.date}</Style.PostTime>
-      <Style.PostTitle href={'/'}>{post.title}</Style.PostTitle>
+      <Style.PostTitle href={`/blog/${post.slug}`}>{post.title}</Style.PostTitle>
       <Style.PostDesc>{post.summary}</Style.PostDesc>
       <Style.PostTags>
         {post.tags.map((tag) => (

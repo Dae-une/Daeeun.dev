@@ -14,7 +14,6 @@ export interface PostType {
 const Home: FC<PostType> = ({ posts }) => {
   return (
     <>
-      <Header />
       <Title />
       <Tags />
       <PostGrid posts={posts} />

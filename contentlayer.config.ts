@@ -1,4 +1,8 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import rehypeSlug from 'rehype-slug';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrism from 'rehype-prism-plus';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -21,4 +25,19 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post],
+  mdx: {
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      rehypePrism,
+      [
+        rehypeAutolinkHeadings,
+        {
+          properties: {
+            className: ['anchor'],
+          },
+        },
+      ],
+    ],
+  },
 });
