@@ -1,3 +1,5 @@
+const { withContentlayer } = require('next-contentlayer');
+
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
@@ -9,4 +11,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withContentlayer(nextConfig);

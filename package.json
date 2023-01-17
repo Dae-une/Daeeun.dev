@@ -5,11 +5,16 @@
     "dev": "next"
   },
   "dependencies": {
+    "@effect-ts/core": "^0.60.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mdx-js/loader": "^2.2.1",
+    "@next/mdx": "^13.1.2",
+    "contentlayer": "^0.2.9",
     "emotion-reset": "^3.0.1",
     "framer-motion": "^8.4.2",
     "next": "^13.1.2",
+    "next-contentlayer": "^0.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.4"

@@ -1,8 +1,10 @@
 import PostCard from 'components/PostCard';
 import { motion } from 'framer-motion';
+import { PostType } from 'pages';
+import { FC } from 'react';
 import * as Style from './styles';
 
-const PostGrid = () => {
+const PostGrid: FC<PostType> = ({ posts }) => {
   return (
     <Style.PostGird>
       <motion.div
@@ -10,10 +12,9 @@ const PostGrid = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ type: 'spring', damping: 70 }}
       >
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
+        {posts.map((post) => (
+          <PostCard post={post} key={post._id} />
+        ))}
       </motion.div>
     </Style.PostGird>
   );

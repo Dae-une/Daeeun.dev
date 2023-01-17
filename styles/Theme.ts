@@ -6,7 +6,7 @@ const colors = {
     2: '#202125',
   },
   yellow: {
-    1: '#a9a218',
+    1: '#e0d716',
   },
   white: {
     1: '#FFFFFF',
