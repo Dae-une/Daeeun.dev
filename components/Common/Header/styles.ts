@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Link from 'next/link';
 
 export const HeaderWrapper = styled.div`
   height: 5rem;
@@ -17,7 +18,7 @@ export const SVGWrpper = styled.div`
   cursor: pointer;
 `;
 
-export const AboutWrpper = styled.div`
+export const HeaderLeft = styled.div`
   display: flex;
   gap: 1rem;
 `;

@@ -1,9 +1,9 @@
-import About from './About';
 import * as Style from './styles';
-import Velog from './Velog';
 import Hamburger from '../../../public/svg/hamburger.svg';
+import SearchIcon from '../../../public/svg/search.svg';
 import { useCallback, useState } from 'react';
 import SideBar from 'components/SideBar';
+import Link from 'next/link';
 
 const Header = () => {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -18,10 +18,13 @@ const Header = () => {
         <Style.SVGWrpper onClick={toggleSideBar}>
           <Hamburger />
         </Style.SVGWrpper>
-        <Style.AboutWrpper>
-          <Velog />
-          <About />
-        </Style.AboutWrpper>
+        <Style.HeaderLeft>
+          <Style.SVGWrpper>
+            <Link href={'/search'}>
+              <SearchIcon />
+            </Link>
+          </Style.SVGWrpper>
+        </Style.HeaderLeft>
       </Style.HeaderWrapper>
       <SideBar isOpen={showSideBar} toggle={toggleSideBar} />
     </>
