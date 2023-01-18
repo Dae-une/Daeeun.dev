@@ -28,6 +28,8 @@ const style = css`
   }
   pre {
     border: 1px solid white;
+    border-radius: 8px;
+    padding: 20px;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -147,6 +149,7 @@ const style = css`
   }
 
   .rehype-code-title {
+    border: 1px solid skyblue;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     padding: 5px 16px;

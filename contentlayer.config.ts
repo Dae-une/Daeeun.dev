@@ -1,13 +1,14 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-import rehypeSlug from 'rehype-slug';
-import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrism from 'rehype-prism-plus';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
-  contentType: 'mdx',
   filePathPattern: `**/*.mdx`,
+  contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'string', required: true },
@@ -26,18 +27,7 @@ export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post],
   mdx: {
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeCodeTitles,
-      rehypePrism,
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ['anchor'],
-          },
-        },
-      ],
-    ],
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeSlug, rehypeCodeTitles, rehypeHighlight, [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }]],
   },
 });

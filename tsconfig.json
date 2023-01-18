@@ -31,7 +31,8 @@
     "**/*.ts",
     "**/*.tsx",
     "next.config.js",
-    "mdx.d.ts"
+    "mdx.d.ts",
+    ".contentlayer/generated"
   ],
   "exclude": [
     "node_modules"

@@ -15,13 +15,15 @@ export const TagTitle = styled.div`
 
 export const TagCount = styled.div`
   font-size: 1rem;
+  line-height: 10px;
+  font-style: italic;
 `;
 
 export const TagList = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  column-gap: 1rem;
+  column-gap: 1.4rem;
   row-gap: 1rem;
   margin-top: 3rem;
   padding: 0 20px;
@@ -32,4 +34,5 @@ export const TagItem = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: flex;
+  
 `;

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from '@emotion/styled';
 
 export const PostCard = styled.li`
-  height: 10rem;
+  height: 11rem;
   width: 100%;
   border: 1px solid ${(props) => props.theme.colors.gray[1]};
   border-radius: 6px;
