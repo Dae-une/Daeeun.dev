@@ -25,15 +25,17 @@ const animation = {
   `,
 };
 
-const breakPoints = {
+const breakPoints = [
   // base: ~ 320px,
-  sm: '320px', // 320px ~ 768px
-  md: '768px', // 768px ~ 960px
-  lg: '960px', // 960px ~ 1200px
-  xl: '1200px', // 1200px ~ 1536px
-  '2xl': '1536px', // 1536px ~
-};
+  '320px', // 320px ~ 768px
+  '768px', // 768px ~ 960px
+  '960px', // 960px ~ 1200px
+  '1200px', // 1200px ~ 1536px
+  '1536px', // 1536px ~
+];
 
-const theme = { colors, animation, breakPoints };
+export const mq = breakPoints.map((bp) => `@media (min-width: ${bp})`);
+
+const theme = { colors, animation, mq };
 
 export default theme;

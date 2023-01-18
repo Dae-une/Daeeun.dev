@@ -3,7 +3,6 @@ import * as Style from './styles';
 import GithubSVG from '../../public/svg/github.svg';
 import EmailSVG from '../../public/svg/email.svg';
 import RSSSVG from '../../public/svg/rss.svg';
-import Link from 'next/link';
 
 export interface SideBarProps {
   isOpen: boolean;
@@ -23,24 +22,24 @@ const Icons = [
   },
   {
     title: 'rss',
-    href: '/',
+    href: '/rss.xml',
     svg: <RSSSVG />,
   },
 ];
 
 const Links = [
   {
-    title: '홈',
+    title: 'Home.',
     href: '/',
     noopener: false,
   },
   {
-    title: 'Velog',
+    title: 'Velog.',
     href: 'https://velog.io/@dae_eun2',
     noopener: true,
   },
   {
-    title: 'About',
+    title: 'About.',
     href: 'https://portfolio-dae-une.vercel.app',
     noopener: true,
   },
@@ -60,7 +59,7 @@ const SideBar: FC<SideBarProps> = ({ isOpen, toggle }) => {
         </Style.SideBarLinks>
         <Style.SideBarList>
           {Links.map((link) => (
-            <Style.SdieBarItem href={link.href} target={link.noopener ? '_blank' : '_parent'} rel="noopener">
+            <Style.SdieBarItem key={link.title} href={link.href} target={link.noopener ? '_blank' : '_parent'} rel="noopener">
               {link.title}
             </Style.SdieBarItem>
           ))}

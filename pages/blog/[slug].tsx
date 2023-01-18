@@ -4,6 +4,7 @@ import React, { FC } from 'react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import * as Style from './styles';
 import PostLayout from 'components/PostLayout';
+import TableOfContents from 'components/TableOfContents';
 
 interface BlogPostProps {
   post: Post;
@@ -18,6 +19,7 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
         <Style.Title>{post.title}</Style.Title>
         <Style.TitleDate>{post.date}</Style.TitleDate>
       </Style.TitleWrapper>
+      <TableOfContents />
       <MDXComponent />
     </PostLayout>
   );

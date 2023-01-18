@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const tags = getAllTags(allPosts);
   const tag = String(params?.tag).toLowerCase();
   const posts = allPosts.filter((post) => post.tags.includes(tag));
-  console.log(tag, posts);
 
   return {
     props: {

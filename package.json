@@ -8,6 +8,7 @@
     "@effect-ts/core": "^0.60.5",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@giscus/react": "^2.2.6",
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
     "@next/mdx": "^13.1.2",
