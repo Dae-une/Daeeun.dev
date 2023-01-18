@@ -34,5 +34,4 @@ export const TagItem = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: flex;
-  
 `;

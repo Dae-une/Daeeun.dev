@@ -1,11 +1,11 @@
 import * as Style from './styles';
 import { motion } from 'framer-motion';
-import { Tags } from 'utils/getAllTags';
+import { Tags as TagsType } from 'utils/getAllTags';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 
 interface TagsProps {
-  tags: Tags;
+  tags: TagsType;
   currentTagPostCount: number;
 }
 
