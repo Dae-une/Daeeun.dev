@@ -22,8 +22,9 @@ const TableOfContents = () => {
       <Style.Toc>
         {headEls.map((head) => (
           <div key={head.id}>
-            <Style.TocLink href={`#${head.id}`} isActived={head.id === currentId}>
-              {head.nodeName === 'H3' && '• '}
+            <Style.TocLink href={`#${head.id}`} isActived={head.id === currentId} className={head.nodeName === 'H1' ? '' : head.nodeName === 'H2' ? 'toc-h2' : 'toc-h3'}>
+              {head.nodeName === 'H3' && '•'}
+              {head.nodeName === 'H2' && '- '}
               {head.textContent}
             </Style.TocLink>
           </div>

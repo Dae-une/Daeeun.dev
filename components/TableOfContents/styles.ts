@@ -4,7 +4,7 @@ import { mq } from 'styles/Theme';
 export const TocWrapper = styled.nav`
   position: absolute;
   display: none;
-  right: 0rem;
+  right: -1rem;
   padding: 0 1rem;
   ${mq[3]} {
     display: block;

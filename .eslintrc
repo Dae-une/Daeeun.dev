@@ -43,6 +43,7 @@
     "import/no-cycle": "off",
     "react/self-closing-comp": "off",
     "import/order": "off",
-    "array-callback-return": "off"
+    "array-callback-return": "off",
+    "no-nested-ternary": "off"
   }
 }

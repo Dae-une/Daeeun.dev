@@ -1,5 +1,4 @@
 import { Global, css } from '@emotion/react';
-import emotionReset from 'emotion-reset';
 
 const style = css`
   * {
@@ -116,6 +115,15 @@ const style = css`
   .post-title:hover .post-underline::after {
     width: 100%;
     transition: width 0.3s;
+  }
+
+  .toc-h2 {
+    margin-left: 2px;
+    padding-left: 2px;
+  }
+
+  .toc-h3 {
+    margin-left: 6px;
   }
 `;
 
