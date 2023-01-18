@@ -15,15 +15,16 @@ const Header = () => {
   return (
     <>
       <Style.HeaderWrapper>
-        <Style.SVGWrpper onClick={toggleSideBar}>
-          <Hamburger />
-        </Style.SVGWrpper>
+        <Style.MainBtn href={'/'}>Daeeun.</Style.MainBtn>
         <Style.HeaderLeft>
-          <Style.SVGWrpper>
+          <Style.SVGWrapper>
             <Link href={'/search'}>
               <SearchIcon />
             </Link>
-          </Style.SVGWrpper>
+          </Style.SVGWrapper>
+          <Style.SVGWrapper onClick={toggleSideBar}>
+            <Hamburger />
+          </Style.SVGWrapper>
         </Style.HeaderLeft>
       </Style.HeaderWrapper>
       <SideBar isOpen={showSideBar} toggle={toggleSideBar} />

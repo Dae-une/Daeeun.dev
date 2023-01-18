@@ -20,7 +20,7 @@ interface TocLinkProps {
   isActived: boolean;
 }
 
-export const TocLink = styled(Link)<TocLinkProps>`
+export const TocLink = styled.a<TocLinkProps>`
   text-decoration: none;
   color: ${(props) => (props.isActived ? 'red' : 'white')};
 `;

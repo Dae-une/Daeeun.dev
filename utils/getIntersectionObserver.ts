@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 const observerOption = {
-  rootMargin: '0px 0px -80% 0px',
+  rootMargin: '0px 0px -90% 0px',
   threshold: 0.1,
 };
 
