@@ -24,6 +24,7 @@ const style = css`
   }
   a {
     text-decoration: none;
+    color: white;
   }
   li {
     list-style: none;
@@ -116,14 +117,22 @@ const style = css`
     width: 100%;
     transition: width 0.3s;
   }
-
+  .toc-h1 {
+  }
   .toc-h2 {
-    margin-left: 2px;
-    padding-left: 2px;
+    margin-left: 15px;
+    padding-left: 6px;
+    border-left: 1px solid gray;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 
   .toc-h3 {
-    margin-left: 6px;
+    margin-left: 30px;
+    padding-left: 6px;
+    border-left: 1px solid gray;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 `;
 

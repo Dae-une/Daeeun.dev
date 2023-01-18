@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import * as Style from './styles';
-import GithubSVG from '../../public/svg/github.svg';
-import EmailSVG from '../../public/svg/email.svg';
-import RSSSVG from '../../public/svg/rss.svg';
+import GithubSVG from '../../static/svg/github.svg';
+import EmailSVG from '../../static/svg/email.svg';
+import RSSSVG from '../../static/svg/rss.svg';
 
 export interface SideBarProps {
   isOpen: boolean;

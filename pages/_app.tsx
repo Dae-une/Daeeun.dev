@@ -6,6 +6,7 @@ import GlobalStyle from 'styles/GlobalStyle';
 import theme from 'styles/Theme';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../seo.config';
+import Footer from 'components/Footer';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -15,6 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Layout>
         <Header />
         <Component {...pageProps} />
+        <Footer />
       </Layout>
     </ThemeProvider>
   );

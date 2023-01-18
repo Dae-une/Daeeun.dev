@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react';
 import SideBar from 'components/SideBar';
 import Link from 'next/link';
 import * as Style from './styles';
-import Hamburger from '../../../public/svg/hamburger.svg';
-import SearchIcon from '../../../public/svg/search.svg';
+import Hamburger from '../../../static/svg/hamburger.svg';
+import SearchIcon from '../../../static/svg/search.svg';
 
 function Header() {
   const [showSideBar, setShowSideBar] = useState(false);

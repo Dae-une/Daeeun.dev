@@ -1,0 +1,84 @@
+---
+title: Stale-While-revalidate에 대하여
+date: 2023-01-18
+summary: Stale-While-revalidate 전략은 어떻게 활용되고 있을까
+tags: ['Client', 'HTTP', 'Caching']
+---
+
+# stale-while-revalidate
+
+stale-while-revalidate , 줄여서 swr 전략은 캐싱된 컨텐츠를 즉시 로드하는 즉시성과 <br/>
+업데이트된 캐싱 컨텐츠가 미래에 사용되도록 보장하기 최시성 간의 균형을 유지하는데 도움이 됩니다.
+
+## 브라우저는 캐시된 응답이 오래된것인지 어떻게 알 수 있나요?
+
+stale-while-revalidate 를 포함한 Cache-Control 응답 헤더는 max-age 를 포함해야 하며,
+이것으로 캐싱된 응답이 오래된 것인지 여부를 결정합니다.
+
+로컬로 캐시된 응답이 아직 최신 상태이면 그대로 사용하여 브라우저의 요청을 이행할 수 있습니다.
+그러나 캐시된 응답이 오래된 경우 재검증 요청이 수행됩니다.
+
+```bash
+ Cache-Control : max-age=1, stale-while-revalidate=59
+```
+
+위와 같은 HTTP 요청이 1초(max-age)이내에 반복적으로 발생한다면,
+유효성 검증 없이 캐싱된 컨텐츠를 반환합니다.
+
+<img src="https://youthfulhps.dev/static/f9e7bb4b3dee1eadcc36789a1ce9936b/9cab2/swr-flow-1.png" />
+
+HTTP요청이 1 ~ 60초(max-age~ swr)사이에 반복적으로 발생할 경우,
+우선 캐싱된 낡은 컨텐츠를 반환하고, 이와 동시에 캐싱된 컨텐츠를 새로운 컨텐츠로 채우도록 재검증 요청이 발생합니다.
+
+<img src="https://youthfulhps.dev/static/4cfd14b60aa1d85a5dc28e2a9770979f/9cab2/swr-flow-2.png" />
+
+HTTP 요청이 60초(swr) 이후 시점에 발생한다면, 요청이 서버로 전달되어 컨텐츠를 반환 받아 로컬 캐시를 새로운 응답으로 채웁니다.
+
+## 일반적인 사용 사례
+
+### react-query,swr
+
+react-query와 swr은 swr 전략을 사용한 대표적인 데이터 패칭 도구입니다.
+
+클라이언트에서 리덕스를 사용한다면, 서버로부터 전달받은 값을 리덕스에 저장하고 최신화된 데이터로서 사용됩니다.
+하지만 위 값은 특정 시점의 서버 데이터의 스냅샷이며, 이 데이터가 최신 데이터라고 보장하기 어렵습니다.
+
+페이지 전환,인터렉셕 등이 새롭게 발생되면 새로운 요청을 통해 리덕스 스토어의 값을 변경해주어야 하는
+최신화에 대한 의무와, 최신화 하는 시점에 대한 고민 등 클라이언트 개발자의 부담이 컸습니다.
+
+반면, react-query와 swr은 낡은 캐시로부터 빠르게 컨텐츠를 반환하고,
+백그라운드에서 요청을 통해 캐싱된 컨텐츠의 재검증을 진행하여 최신화된 데이터를 보장할 수 있습니다.
+
+이러한 데이터 패칭 도구는 클라이언트 개발에서 최신화된 데이터를 가져오려는 노력과 캐싱, 업데이드 및 동기화,
+에러 핸들링 등 복잡한 비동기 과정을 앱에게 책임 전가할 수 있도록 도와줍니다.
+
+### Next.js
+
+Next에서 어플리케이션을 빌드할 때, getStaticProps를 통해 필요한 서버 데이터를 받아와
+json 파일로 저장하고, 마크업 파일을 생성해 두어 요청 시 정적으로 빠르게 페이지를 제공합니다.
+이를 정적 사이트 생성 (Static Site Generation)이라고 합니다.
+
+하지만 빌드 시점에 미리 서버 데이터를 받아와 저장을 하다 보니, 특정 시점에서 캡쳐된 데이터가 최신 데이터가 아닐 수 있습니다.
+그래서 Next는 swr전략을 이용해 증분 정적 재생성(Incremetal Static Regeneration)을 가능케하여 위 문제를 해결했습니다.
+
+```jsx
+export async function getStaticProps() {
+  const response = await fetch('...');
+  const posts = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 10,
+  };
+}
+```
+
+revalidate 시간 이내의 페이지 요청은 빌드해 두었던 페이지와 데이터를 정적으로 빠르게 제공하고,
+이후 재검증을 통해 페이지와 데이터를 재생성하여 최신화 합니다.
+
+### Ref
+
+[stale-while-revalidate로 최신 상태 유지](https://web.dev/stale-while-revalidate/) <br/>
+[stale-while-revalidate 전략은 어떻게 활용되고 있을까](https://youthfulhps.dev/web/stale-while-ravalidate/)

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: '',
+  siteUrl: 'https://daeeun-dev.vercel.app',
   generateRobotsTxt: true,
 };
 
