@@ -26,8 +26,20 @@ const style = css`
     text-decoration: none;
     color: white;
   }
-  li {
-    list-style: none;
+  blockquote {
+    color: #eff4f9;
+    background-color: #537aaa;
+    column-gap: 10px;
+    border-left: 4px solid;
+    padding: 4px 10px;
+    border-radius: 8px;
+  }
+  code {
+    background-color: #45658c;
+    color: #eff4f9;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 2px 5px;
   }
   pre {
     border: 1px solid white;
@@ -47,6 +59,9 @@ const style = css`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
+  }
+  pre > code {
+    background: transparent;
   }
 
   /* code container */

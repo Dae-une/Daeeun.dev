@@ -7,6 +7,7 @@ export const PostCard = styled.li`
   border-radius: 6px;
   padding: 2rem 1rem;
   margin-bottom: 1.2rem;
+  list-style: none;
 `;
 
 export const PostTime = styled.div`
