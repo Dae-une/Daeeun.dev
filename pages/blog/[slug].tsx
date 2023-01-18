@@ -2,11 +2,28 @@ import { allPosts, Post } from 'contentlayer/generated';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React, { FC } from 'react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import * as Style from './styles';
 import PostLayout from 'components/PostLayout';
 import TableOfContents from 'components/TableOfContents';
 import { NextSeo } from 'next-seo';
 import METADATA from 'constants/constants';
+import styled from '@emotion/styled';
+
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray[1]};
+`;
+
+const TitleDate = styled.span`
+  font-size: 0.9rem;
+  font-weight: 200;
+`;
+
+const Title = styled.h2`
+  font-size: 2rem;
+  font-weight: bold;
+`;
 
 interface BlogPostProps {
   post: Post;
@@ -31,10 +48,10 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
         }}
       />
       <PostLayout>
-        <Style.TitleWrapper>
-          <Style.Title>{post.title}</Style.Title>
-          <Style.TitleDate>{post.date}</Style.TitleDate>
-        </Style.TitleWrapper>
+        <TitleWrapper>
+          <Title>{post.title}</Title>
+          <TitleDate>{post.date}</TitleDate>
+        </TitleWrapper>
         <TableOfContents />
         <MDXComponent />
       </PostLayout>

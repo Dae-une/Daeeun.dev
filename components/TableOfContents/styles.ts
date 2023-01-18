@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import Link from 'next/link';
 import { mq } from 'styles/Theme';
 
 export const TocWrapper = styled.nav`

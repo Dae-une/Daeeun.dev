@@ -1,7 +1,6 @@
 import PostCard from 'components/PostCard';
 import { Post } from 'contentlayer/generated';
 import { motion } from 'framer-motion';
-import { PostType } from 'pages';
 import { FC } from 'react';
 import * as Style from './styles';
 
