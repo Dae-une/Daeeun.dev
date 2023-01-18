@@ -22,7 +22,7 @@ const Icons = [
   },
   {
     title: 'rss',
-    href: '/rss.xml',
+    href: '/feed.xml',
     svg: <RSSSVG />,
   },
 ];

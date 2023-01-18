@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[KIM DAE EUN]]></title>
+        <description><![CDATA[성장을 위한 집필공간]]></description>
+        <link>https://daeeun-dev.vercel.app/</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Wed, 18 Jan 2023 11:27:16 GMT</lastBuildDate>
+        <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
+        <pubDate>Wed, 18 Jan 2023 11:27:16 GMT</pubDate>
+        <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
+        <language><![CDATA[ko_KR]]></language>
+        <item>
+            <title><![CDATA[Next.js 프로젝트 설정하기(with TS, ESLint, Prettier, Tailwind css)]]></title>
+            <description><![CDATA[next.js로 프로젝트를 시작할때 기초 설정을 어떻게 해야하는지 알아보자.]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/test</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/test</guid>
+            <pubDate>Sun, 08 Jan 2023 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

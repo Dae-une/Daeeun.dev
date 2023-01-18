@@ -8,6 +8,7 @@ import { FC } from 'react';
 import getAllTags, { Tags as TagsType } from 'utils/getAllTags';
 import { NextSeo } from 'next-seo';
 import METADATA from 'constants/constants';
+import generateRSS from 'utils/generateRssFeed';
 
 export interface PostType {
   posts: Post[];
@@ -33,6 +34,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const POST_COUNT = 10;
   const posts = allPosts.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
   const tags = getAllTags(allPosts);
+  await generateRSS();
 
   return {
     props: {
