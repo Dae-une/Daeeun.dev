@@ -1,7 +1,9 @@
 import PostGrid from 'components/PostGrid';
 import SearchInput from 'components/SearchInput';
+import METADATA from 'constants/constants';
 import { allPosts, Post } from 'contentlayer/generated';
 import useSearchValue from 'hooks/useSearchValue';
+import { NextSeo } from 'next-seo';
 import { GetStaticProps } from 'next/types';
 import React, { FC } from 'react';
 
@@ -19,6 +21,7 @@ const SearchPage: FC<SearchPageProps> = ({ posts }) => {
 
   return (
     <>
+      <NextSeo title="Search" canonical={`${METADATA.meta.url}/search`} />
       <SearchInput onChangeSearch={onChangeSearch} />
       <PostGrid posts={searchedPost} />
     </>

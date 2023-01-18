@@ -2,7 +2,9 @@ import Footer from 'components/Footer';
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
 import Title from 'components/Title';
+import METADATA from 'constants/constants';
 import { allPosts, Post } from 'contentlayer/generated';
+import { NextSeo } from 'next-seo';
 import { GetStaticPaths, GetStaticProps } from 'next/types';
 import React, { FC } from 'react';
 import getAllTags, { Tags as TagsType } from 'utils/getAllTags';
@@ -10,13 +12,15 @@ import getAllTags, { Tags as TagsType } from 'utils/getAllTags';
 interface TagPageProp {
   posts: Post[];
   tags: TagsType;
-  tag: TagsType;
+  tag: string;
 }
 
 const TagPage: FC<TagPageProp> = ({ tags, tag, posts }) => {
   const currentTagPostCount = posts.length;
+
   return (
     <>
+      <NextSeo title={tag} description={`${tag}에 관한 게시글 입니다.`} canonical={`${METADATA.meta.url}/tag/${tag}`} />
       <Title />
       <Tags tags={tags} currentTagPostCount={currentTagPostCount} />
       <PostGrid posts={posts} />

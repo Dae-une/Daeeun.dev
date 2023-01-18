@@ -58,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:8.4.2"],\
             ["next", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:13.1.2"],\
             ["next-contentlayer", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:0.2.9"],\
+            ["next-seo", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.15.0"],\
             ["prettier", "npm:2.8.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:18.2.0"],\
@@ -5012,6 +5013,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["framer-motion", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:8.4.2"],\
             ["next", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:13.1.2"],\
             ["next-contentlayer", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:0.2.9"],\
+            ["next-seo", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.15.0"],\
             ["prettier", "npm:2.8.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:18.2.0"],\
@@ -10185,6 +10187,36 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["next-contentlayer", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:0.2.9"],\
             ["@contentlayer/core", "virtual:58c05fd4d84702b002590f986060a973e6a9201de52595dfd307dbec84f69eafc87df1d7496743928f658481dd2764e4b28397a1833655dc7ef2eda6095e0053#npm:0.2.9"],\
             ["@contentlayer/utils", "virtual:58c05fd4d84702b002590f986060a973e6a9201de52595dfd307dbec84f69eafc87df1d7496743928f658481dd2764e4b28397a1833655dc7ef2eda6095e0053#npm:0.2.9"],\
+            ["@types/next", null],\
+            ["@types/react", "npm:18.0.26"],\
+            ["@types/react-dom", null],\
+            ["next", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:13.1.2"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/next",\
+            "@types/react-dom",\
+            "@types/react",\
+            "next",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["next-seo", [\
+        ["npm:5.15.0", {\
+          "packageLocation": "./.yarn/cache/next-seo-npm-5.15.0-4ac654b130-05b0769d9c.zip/node_modules/next-seo/",\
+          "packageDependencies": [\
+            ["next-seo", "npm:5.15.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.15.0", {\
+          "packageLocation": "./.yarn/__virtual__/next-seo-virtual-4b660e3c21/0/cache/next-seo-npm-5.15.0-4ac654b130-05b0769d9c.zip/node_modules/next-seo/",\
+          "packageDependencies": [\
+            ["next-seo", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:5.15.0"],\
             ["@types/next", null],\
             ["@types/react", "npm:18.0.26"],\
             ["@types/react-dom", null],\

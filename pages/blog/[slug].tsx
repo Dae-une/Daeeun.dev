@@ -5,6 +5,8 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import * as Style from './styles';
 import PostLayout from 'components/PostLayout';
 import TableOfContents from 'components/TableOfContents';
+import { NextSeo } from 'next-seo';
+import METADATA from 'constants/constants';
 
 interface BlogPostProps {
   post: Post;
@@ -14,14 +16,29 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
   const MDXComponent = useMDXComponent(post.body.code);
 
   return (
-    <PostLayout>
-      <Style.TitleWrapper>
-        <Style.Title>{post.title}</Style.Title>
-        <Style.TitleDate>{post.date}</Style.TitleDate>
-      </Style.TitleWrapper>
-      <TableOfContents />
-      <MDXComponent />
-    </PostLayout>
+    <>
+      <NextSeo
+        title={post.title}
+        description={post.summary}
+        canonical={`${METADATA.meta.url}/blog/${post.slug}`}
+        openGraph={{
+          type: 'article',
+          url: `${METADATA.meta.url}/blog/${post.slug}`,
+          article: {
+            publishedTime: new Date(post.date).toISOString(),
+            tags: [...post.tags, 'frontend', '프론트엔드', 'develop', '개발'],
+          },
+        }}
+      />
+      <PostLayout>
+        <Style.TitleWrapper>
+          <Style.Title>{post.title}</Style.Title>
+          <Style.TitleDate>{post.date}</Style.TitleDate>
+        </Style.TitleWrapper>
+        <TableOfContents />
+        <MDXComponent />
+      </PostLayout>
+    </>
   );
 };
 

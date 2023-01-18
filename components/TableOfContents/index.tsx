@@ -17,8 +17,6 @@ const TableOfContents = () => {
     });
   }, []);
 
-  console.log(headEls);
-
   return (
     <Style.TocWrapper>
       <Style.Toc>
