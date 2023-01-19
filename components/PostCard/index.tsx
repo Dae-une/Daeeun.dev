@@ -15,7 +15,7 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
       <Style.PostTags>
         {post.tags.map((tag) => (
           <Style.TagItem href={'/'} key={tag}>
-            {tag}
+            {tag.toUpperCase()}
           </Style.TagItem>
         ))}
       </Style.PostTags>

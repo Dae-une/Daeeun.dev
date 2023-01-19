@@ -24,7 +24,6 @@ const TagPage: FC<TagPageProp> = ({ tags, tag, posts }) => {
       <Title />
       <Tags tags={tags} currentTagPostCount={currentTagPostCount} />
       <PostGrid posts={posts} />
-      <Footer />
     </>
   );
 };
