@@ -1,4 +1,3 @@
-import Footer from 'components/Footer';
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
 import Title from 'components/Title';
