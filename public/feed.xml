@@ -4,11 +4,18 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 23 Jan 2023 13:47:15 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 30 Jan 2023 05:09:38 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 23 Jan 2023 13:47:15 GMT</pubDate>
+        <pubDate>Mon, 30 Jan 2023 05:09:38 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
+        <item>
+            <title><![CDATA[클로저 이해하기]]></title>
+            <description><![CDATA[클로저 이해하기]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/Closures</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Closures</guid>
+            <pubDate>Fri, 27 Jan 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[useCallback에 대해 다시 생각해보자]]></title>
             <description><![CDATA[useCallback 과연 어느정도의 효과가 있을까?]]></description>

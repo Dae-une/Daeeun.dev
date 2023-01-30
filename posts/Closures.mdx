@@ -1,0 +1,207 @@
+---
+title: 클로저 이해하기
+date: 2023-01-27
+summary: 클로저 이해하기
+tags: ['js', '기본부터']
+---
+
+> 이 글은 [`You-Dont-Konw-JS`](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch7.md)의 클로저 를 읽고 정리한 글입니다.
+
+# 클로저의 개념
+
+클로저는 자바스크립트 고유의 개념이 아니라 함수를 일급 객체로 취급하는 함수형 프로그래밍 언어 에서 사용되는 중요한 특성이다.
+클로저에 대해 이해하려면 [`실행 컨텍스트`](https://daeeun-dev.vercel.app/blog/Execution%20Context)에 대한 사전 지식이 필요하다.
+
+MDN은 클로저에 대해 아래와 같이 정의하고 있다.
+
+> “A closure is the combination of a function and the lexical environment within which that function was declared.”<br/>
+> 클로저는 함수와 그 함수가 선언됐을 때의 렉시컬 환경(Lexical environment)과의 조합이다.
+
+YDKJS의 저자는 클로저에 대한 정의를 아래의 두가지 시작으로 설명한다.
+
+1. Observational: 클로저는 다른 스코프에서 실행되었음에도 외부 변수를 기억하는 함수 객체이다.
+2. Implementational: 클로저는 다른 스코프에서 참조되거나 실행될 때도 그대로 유지되는 함수 객체와 스코프 환경이다.
+
+이 정의를 굳이 나누는 이유는, 이후 클로저가 기억하는 범위가 어디까지인지에서 두 가지 시각이 등장할 수 있기 때문입니다. 우리 눈에 관측되는 부분만을 클로저의 정의로 볼 것인지, 엔진이 실제로 동작하기 위해 어디까지 관리하는지를 정의로 볼지에 대한 고찰이라고 볼 수 있겠습니다.
+
+# 클로저 관찰
+
+클로저는 함수의 동작이며 함수일 뿐이다.
+함수를 다루지 않는 경우 클로저가 적용되지 않습니다.
+객체는 클로저를 가질 수 없으며 클래스 또한 클로저를 가질 수 없습니다.
+오직 함수에만 클로저가 존재합니다.
+
+클로저가 관찰되려면 함수가 호출되어야 하며, 본래 정의된 범위 체인과 다른 분기에서 호출되어야 합니다.
+
+```jsx
+function lookupStudent(studentID) {
+  var students = [
+    { id: 14, name: 'Kyle' },
+    { id: 73, name: 'Suzy' },
+    { id: 112, name: 'Frank' },
+    { id: 6, name: 'Sarah' },
+  ];
+
+  return function greetStudent(greeting) {
+    var student = students.find((student) => student.id == studentID);
+    return `${greeting}, ${student.name}!`;
+  };
+}
+
+var chosenStudents = [lookupStudent(6), lookupStudent(112)];
+
+// accessing the function's name:
+chosenStudents[0].name;
+// greetStudent
+
+chosenStudents[0]('Hello');
+// Hello, Sarah!
+
+chosenStudents[1]('Howdy');
+// Howdy, Frank!
+```
+
+이 코드에서 가장 먼저 주목해야할 점은 `lookupStudent` 외부 함수가 `greetStudent`이라는 내부 함수를 생성하고 반환한다는 것입니다.
+`lookupStudent`함수는 두 번 호출되어 내부 `greetStudent`함수의 두개의 개별 인스턴스를 생성합니다.
+
+`lookupStudent`함수가 호출이 끝날 때 마다 내부 변수가 모두 삭제되고 GC(Garbage Collected)가 되는 것처럼 보입니다.
+내부 함수는 반한되고 보존되는 것으로 보이는 유일한 것입니다.
+
+`greetStudent`는 greeting이라는 매개변수로 단일 인자를 받지만 studentID,students 를 모두 참조합니다.
+내부 함수에서 외부 범위의 변수에 대한 각 참조를 `클로저` 라고 합니다.
+
+그렇다면 클로저들은 구체적이고 관찰 가능한 의미에서 어떠한 동작을 할까요?
+
+클로저는 `greetStudent`함수가 종료된 후에도 이러한 외부 변수에 계속 접근할수 있도록 합니다.
+students,studentID는 GC에 의해서 수집되지 않고, 메모리에 남아 있게 됩니다.
+나중에 greetStudent함수의 인스턴스 중 하나가 호출 될 때 해당 변수는 현재 값을 유지하며 존재합니다.
+
+만약 JS에서 클로저가 없다면, students,studentID는 더이상 존재 하지 않게 되고 우리는 ReferenceError를 보게 될 것입니다.
+
+하지만 오류가 발생하지 않고 여전히 studentID와 students 변수에 접근 할 수 있습니다.
+이것이 클로저에 대한 직접적인 관찰입니다.
+
+## 클로저는 객체마다
+
+```jsx
+function adder(num1) {
+  return function addTo(num2) {
+    return num1 + num2;
+  };
+}
+
+var add10To = adder(10);
+var add42To = adder(42);
+
+add10To(15); // 25
+add42To(9); // 51
+```
+
+내부 함수 `addTo`의 각 인스턴스 자체는 num1 의 변수를 통해 닫히므로, adder 함수가 끝난다고 해서 num1 이 사라지지는 않습니다.
+나중에 add10To(15) 호출과 같은 내부 함수 addTo의 인스턴스 중 하나를 호출할 때, num1 변수는 여전히 존재하고 원래 10 값을 유지합니다.
+따라서 연산은 10 + 15를 수행하고 답 25를 반환할 수 있습니다.
+
+클로저는 단일 어휘 정의가 아니라 함수의 인스턴스와 연결됩니다.
+앞의 코드에서 adder 내부에 addTo 함수가 하나만 정의되어 있으므로 단일 클로저를 의미하는 것 처럼 보일 수 있습니다.
+
+그러나 실제로 외부 adder함수가 실행될 때마다 내부 addTo 함수 인스턴스가 새로 생성되고 각 새 인스턴스에 대해 새 클로저가 생성됩니다.
+따라서 각 내부 함수 인스턴스는 해당 adder함수의 실행으로부터 스코프 환경의 자체 인스턴스에 대한 자체 클로저를 갖습니다.
+
+클로저는 컴파일 타임에 처리되는 어휘 범위를 기반으로 하지만 함수 인스턴스의 런타임 특성으로 관찰됩니다.
+
+## 스냅샷이 아닌 링크
+
+클로저는 primitive 변수라도 참조될 때 그 값을 복사하여 가져오는 것이 아니라, 그 변수 자체를 참조하게 됩니다.
+즉 변경을 가하면 다음에 또 참조할ㄷ 때 변한 값으로 불러와진다는 것입니다.
+
+```jsx
+function makeCounter() {
+  var count = 0;
+
+  return function getCurrent() {
+    count = count + 1;
+    return count;
+  };
+}
+
+var hits = makeCounter();
+hits(); // 1
+// later
+hits(); // 2
+hits(); // 3
+```
+
+count 변수는 내부 함수 getCurrent에 의해 닫혀 GC에 수집되지 않고 남아있게 됩니다.
+hits함수는 이 변수에 액세스 하고 업데이트하며 매번 증가하는 카운트를 반환합니다.
+
+아래 코드는 클로저를 스냅샷이라고 생각했을때 헷갈릴 수 있는 코드입니다.
+
+```jsx
+var studentName = 'Grace';
+var greeting = function hello() {
+  // Grace 라는 값이 아닌, studentName을 클로저가 참조합니다.
+  console.log(`Hello, ${studentName}!`);
+};
+
+studentName = 'Suzy';
+
+greeting(); // Hello, Grace! 가 아니라 Hello, Suzy!가 출력됩니다.
+```
+
+## 클로저 같지만 아닌것들
+
+저자가 클로저를 설명하면서 강조하는 부분이 바로 과측이 되는가에 대한 부분입니다.
+클로저 처럼 보이지만 클로저의 조건을 갖추지 않은 예시로 아래와 같은 것들이 있습니다.
+
+```jsx
+function say(myName) {
+  var greeting = 'Hello';
+  output();
+
+  function output() {
+    console.log(`${greeting}, ${myName}!`);
+  }
+}
+
+say('Kyle');
+// Hello, Kyle!
+```
+
+얼핏 보면 함수 안에 함수가 있고, 외부 함수의 호출이 전역에서 일어나니 클로저 처럼 보일 수도 있지만,
+문제는 output함수가 say함수 내부에서 호출되고 끝난다는 점 입니다.
+이건 도달할 수 없는 스코프를 참조한 것이 아니라 그냥 nested scope가 자신의 상의 스코프의 변수를 참조했을 뿐입니다.
+
+## 클로저가 되려면
+
+저자는 클로저의 특징으로 몇가지를 제시하는데 아래와 같다.
+
+1. 클로저는 반드시 함수와 연관이 있다. 단순 객체나 클래스등은 클로저라 지칭할 수 없다.
+2. 외부 스코프의 변수를 적어도 하나는 참조해야 한다.
+3. 클로저는 함수가 실행되어야만 관찰이 되는 개념이다.
+4. 참조되는 변수와 다른 스코프에서 실행되어야 한다.
+
+## 클로저 수명 주기 및 가비지 콜렉터
+
+클로저는 본질적으로 함수 인스턴스에 연결되어 있기 때문에 변수에 대한 클로저는 해당 함수에 대한 참조가 있는 한 지속됩니다.
+
+10개의 함수가 모두 동일한 변수에 대해 클로저를 가지고 있고, 시간이 지남에 따라 이러한 함수 참조 중 9개가 삭제가 되면
+나머지 함수 참조는 여전히 해당 변수를 유지합니다.
+마지막으로 함수 참조가 삭제되면 해당 변수에 대한 마지막 클로저가 사라지고 가비지 콜렉터에 의해 수집됩니다.
+
+클로저는 예기치 않게 종료된 변수의 가비지 콜렉터를 방지 할 수 있으며, 이로 인해 시간이 지남에 따라서 메모리 사용량이 증가하게 됩니다.
+그렇기 때문에 함수 참조가 더이상 필요하지 않을때 이를 폐기하는것이 중요합니다.
+
+## 클로저는 어디까지 기억하는가
+
+클로저 자체는 관측 되는 현상만 놓고 보면 참조하는 변수 딱 하나만을 바라보기는 하지만,
+어떻게 이것이 구현되는지에 대한 관점으로 보면 결국 클로저가 발생하면 참조되는 변수를 둘러싼 스코프 환경과 함수 객체까지
+엔진이 기억하고 있습니다.
+어떤식으로 이해를 하더라도, 결론적으로 클로저는 결국 스코프가 직접적으로 관측이 되는 것은 참조하는 변수 그 하나에 대한 것이기에
+좀 더 납득이 되는 방향으로 이해하면 좋을것 이라고 저자는 이야기합니다.
+
+## 클로저의 장점
+
+1. 클로저는 함수 인스턴스가 매번 계산하지 않고 이전에 결정된 정보를 기억할 수 있도록 하여 효율성을 향상시킬 수 있습니다
+2. 클로저는 코드 가독성을 향상시키고 함수 인스턴스 내부에 변수를 캡슐화하여 범위 노출을 제한하는 동시에 이러한 변수의 정보가 나중에 사용할 수 있도록 액세스할 수 있도록 합니다.
+   보존된 정보가 모든 호출에서 전달될 필요가 없기 때문에 결과적으로 더 좁고 더 전문화된 함수 인스턴스는 상호 작용하기에 더 깨끗한 코드를 작성할 수 있습니다.
+
