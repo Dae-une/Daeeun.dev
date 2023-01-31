@@ -196,18 +196,7 @@ API는 `ReactDOM.flushSync(fn)`입니다.<br/>
 상태 업데이트를 즉시 한다는 것은 그 작업의 수행 시간과는 관계 없이 큐처럼 순서대로 반영된다는 이야기이며,<br/>
 이럴 경우 사용자 경험을 저하 시킬 수 있다.
 
-아래는 setState의 코드이다.
-
-```jsx
-Component.prototype.setState = function (partialState, callback) {
-  if (typeof partialState !== 'object' && typeof partialState !== 'function' && partialState != null) {
-    throw new Error('setState(...): takes an object of state variables to update or a ' + 'function which returns an object of state variables.');
-  }
-
-  this.updater.enqueueSetState(this, partialState, callback, 'setState');
-};
-```
-
 # 참조
 
-[`RFClarification: why is setState asynchronous?`](https://github.com/facebook/react/issues/11527)
+[RFClarification: why is setState asynchronous?](https://github.com/facebook/react/issues/11527)<br/>
+[리액트의 일괄처리에 대해](https://github.com/reactwg/react-18/discussions/21)
