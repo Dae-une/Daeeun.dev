@@ -23,7 +23,6 @@ const style = css`
     cursor: pointer;
   }
   a {
-    text-decoration: none;
     color: white;
   }
   blockquote {

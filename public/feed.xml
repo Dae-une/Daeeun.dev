@@ -4,11 +4,18 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 30 Jan 2023 05:09:38 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 31 Jan 2023 08:34:50 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 30 Jan 2023 05:09:38 GMT</pubDate>
+        <pubDate>Tue, 31 Jan 2023 08:34:50 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
+        <item>
+            <title><![CDATA[setState는 비동기로 동작한다]]></title>
+            <description><![CDATA[setState는 사실 비동기로 동작한다.]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/Why_is_setState_asynchronous</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Why_is_setState_asynchronous</guid>
+            <pubDate>Tue, 31 Jan 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[클로저 이해하기]]></title>
             <description><![CDATA[클로저 이해하기]]></description>
@@ -19,15 +26,15 @@
         <item>
             <title><![CDATA[useCallback에 대해 다시 생각해보자]]></title>
             <description><![CDATA[useCallback 과연 어느정도의 효과가 있을까?]]></description>
-            <link>https://daeeun-dev.vercel.app//blogs/about useCallback</link>
-            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/about useCallback</guid>
+            <link>https://daeeun-dev.vercel.app//blogs/about_useCallback</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/about_useCallback</guid>
             <pubDate>Fri, 20 Jan 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[실행 컨텍스트]]></title>
             <description><![CDATA[실행 컨텍스트와 조금은 가까워져보자]]></description>
-            <link>https://daeeun-dev.vercel.app//blogs/Execution Context</link>
-            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Execution Context</guid>
+            <link>https://daeeun-dev.vercel.app//blogs/Execution_Context</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Execution_Context</guid>
             <pubDate>Thu, 19 Jan 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
