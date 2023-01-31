@@ -22,7 +22,7 @@ const style = css`
     padding: 0;
     cursor: pointer;
   }
-  a {
+  p > a {
     color: white;
   }
   blockquote {

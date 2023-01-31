@@ -4,11 +4,18 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 31 Jan 2023 08:36:26 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 31 Jan 2023 16:46:29 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 31 Jan 2023 08:36:26 GMT</pubDate>
+        <pubDate>Tue, 31 Jan 2023 16:46:29 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
+        <item>
+            <title><![CDATA[웹 표준 및 웹 접근성을 고려한 UI]]></title>
+            <description><![CDATA[웹 표준 및 웹 접근성을 고려한 UI]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/a11y</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/a11y</guid>
+            <pubDate>Wed, 01 Feb 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[setState는 비동기로 동작한다]]></title>
             <description><![CDATA[setState는 사실 비동기로 동작한다.]]></description>
