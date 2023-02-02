@@ -1,0 +1,316 @@
+---
+title: useState 지옥에서 벗어나기
+date: 2023-02-02
+summary: useState 지옥에서 벗어나보자
+tags: ['react', '기본부터']
+---
+
+> 이 포스트는 [A Cure For useState Hell?](https://www.builder.io/blog/use-reducer)을 번역한 글입니다.
+
+여러분은 리액트를 사용하면서 useState지옥에 빠져보신 적이 있으신가요??<br/>
+아래 처럼 말이에요
+
+```jsx
+import { useState } from 'react';
+
+function EditCalendarEvent() {
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState();
+  const [attendees, setAttendees] = useState([]);
+
+  return (
+    <>
+      <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      {/* ... */}
+    </>
+  );
+}
+```
+
+위는 캘린더 이벤트를 업데이트하는 컴포넌트 입니다. 아쉽게도 몇가지 문제가 있습니다.<br/>
+
+가독성이 좋지 않다는것 외에도 세이프가드가 없다는 문제가 있습니다.<br/>
+종료 날짜를 시작 날짜 이전으로 선택하는 모순을 막을 방법이 없습니다.<br/>
+
+너무 긴 제목이나 설명에 대한 가드도 없습니다.<br/>
+
+물론, `set*()`를 호출 하는 모든 곳에서 상태를 업데이트하기 전에 이 모든 조건을 검토할 것이라고 생각하고 있을 수 있습니다.<br/>
+하지만 저는 깨지기 쉬운 상태에 있다는것을 알고도 안심하기는 어려울것 같습니다.<br/>
+
+# useState를 대체할 더 강력한 대안이 있습니다.
+
+useState를 대체할 수 있는 ㅅ앵각보다 더 강력하고 사용하기 쉬운 훅이 있다는것을 알고 계셨나요?<br/>
+`useReducer`를 사용하면 위 코드를 아래와 같이 변경할 수 있습니다.
+
+```jsx
+import { useReducer } from 'react'
+
+function EditCalendarEvent() {
+  const [event, updateEvent] = useReducer((prev, next) => {
+    return { ...prev, ...next }
+  }, { title: '', description: '', attendees: [] })
+
+  return <br>
+    <input value={event.title}
+      onChange={e => updateEvent({ title: e.target.value }) } />
+    {/* ... */}
+  </>
+}
+```
+
+`useReducer`훅은 상태를 A에서 B로의 변환을 제어할 수 있습니다.<br/>
+누군가는 `useState`로도 할 수 있어요 라고 말하며, 아래와 같은 코드를 제시할 수 있습니다.
+
+```jsx
+import { useState } from 'react';
+
+function EditCalendarEvent() {
+  const [event, setEvent] = useState({
+    title: '',
+    description: '',
+    attendees: [],
+  });
+
+  return (
+    <>
+      <input value={event.title} onChange={(e) => setEvent({ ...event, title: e.target.value })} />
+      {/* ... */}
+    </>
+  );
+}
+```
+
+물론 틀린 말은 아닙니다. 하지만 여기서 고려해봐야할 중요한 사항이 하나 있습니다.<br/>
+이러한 방식은 `...event`로 전개하여 불변성을 유미하며 객체를 직접 변경하지 않도록 해야 한다는것 입니다.<br/>
+또한, `useReducer`는 상태 변환을 제어할 수 있는 기능을 제공합니다.<br/>
+
+`useReducer`로 돌아가서, 유일한 차이점은 각 상태의 변화가 안전하고 유요할 것을 보장하는 함수를 추가로 인자에 전달한다는 점입니다.<br/>
+
+```jsx
+const [event, updateEvent] = useReducer(
+  (prev, next) => {
+    // 상태가 항상 유효한지 확인하기 위해 이벤트 검증 및 변환
+    // ...
+  },
+  { title: '', description: '', attendees: [] },
+);
+```
+
+이는 상태를 한 곳에서 관리하며 언제나 유효하다는 것을 보장한다는 이점을 갖습니다.<br/>
+
+따라서 이 모델을 사용하면 시간이 지남에 따라 다른 코드가 추가되고, 팀의 새로운 멤버가 `updateEvent()`를<br/>
+유효하지 않은 데이터와 함께 호출하더라도 상태 값을 검증하는 콜백이 실행될 것입니다.<br/>
+
+예를 들어, 상태가 어떻게, 어디에서 업데이트 되어도 절대 종료 날짜가 시작 날짜 이전일 수 없고,<br/>
+제목의 길이가 최대 100자임을 항상 확인해야할 수 있습니다.<br/>
+
+```jsx
+import { useReducer } from 'react';
+
+function EditCalendarEvent() {
+  const [event, updateEvent] = useReducer(
+    (prev, next) => {
+      const newEvent = { ...prev, ...next };
+      // 시작 날짜가 종료 날짜 이후가 될 수 없음을 보장합니다
+      if (newEvent.startDate > newEvent.endDate) {
+        newEvent.endDate = newEvent.startDate;
+      }
+      // 제목이 100자를 넘을 수 없음을 보장합니다
+      if (newEvent.title.length > 100) {
+        newEvent.title = newEvent.title.substring(0, 100);
+      }
+      return newEvent;
+    },
+    { title: '', description: '', attendees: [] },
+  );
+
+  return (
+    <>
+      <input value={event.title} onChange={(e) => updateEvent({ title: e.target.value })} />
+      {/* ... */}
+    </>
+  );
+}
+```
+
+상태의 직접적인 변형을 방지하는 이 기능은 특히 코드가 비대해지고 복잡해질 수록 중요한 안전망을 제공합니다.<br/>
+
+UI에서도 유효성 검사를 제공해야 합니다. 데이터베이스에 ORM 처럼 안전성을 보장하는 하나의 세트로 생각하면 <br/>
+상태 값이 항상 유효하다는 것을 완전히 확신할 수 있습니다.<br/>
+이를 통해 향후 이상하고 디버그하기 어려운 문제를 방지할 수 있습니다.<br/>
+
+## useState를 사용하는 거의 모든 곳에서 useReducer를 사용할 수 있습니다.
+
+세상에서 가장 간단한 컴포넌트인 카운터 컴포넌트가 있고, 해당 컴포넌트에서 `useState`훅을 사용한다고 봅시다.
+
+```jsx
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return <button onClick={() => setCount(count + 1)}>Count is {count}</button>;
+}
+```
+
+이러한 작은 예시에서도, `count`는 무한대로 커질 수 잇어야 하나요? 음수여야 하나요?<br/>
+
+이 예시에서 음수 값이 나올 수는 없겠지만, 카운트에 제한을 설정하고 하는 경우 <br/>
+`useReducer`를 사용하면 간단하게 처리할 수 있습니다.<br/>
+또 상태가 언제 어떻게 사용되든 항상 유효하다는 확신을 가질 수 있습니다.<br/>
+
+```jsx
+import { useReducer } from 'react';
+
+function Counter() {
+  const [count, setCount] = useReducer((prev, next) => Math.min(next, 10), 0);
+
+  return <button onClick={() => setCount(count + 1)}>Count is {count}</button>;
+}
+```
+
+## (선택사항) Redux스러운 것들
+
+상황이 더 복잡해지면 redux스타일의 `action` 기반 패턴을 사용할 수도 있습니다.
+
+위의 캘린더 이벤트를 아래와 같이 작성할 수도 있습니다.
+
+```jsx
+import { useReducer } from 'react';
+
+function EditCalendarEvent() {
+  const [event, updateEvent] = useReducer(
+    (state, action) => {
+      const newEvent = { ...state };
+
+      switch (action.type) {
+        case 'updateTitle':
+          newEvent.title = action.title;
+          break;
+        // action들...
+      }
+      return newEvent;
+    },
+    { title: '', description: '', attendees: [] },
+  );
+
+  return (
+    <>
+      <input value={event.title} 
+      onChange={(e) => updateEvent({ type: 'updateTitle', title: 'Hello' })} />
+      {/* ... */}
+    </>
+  );
+}
+```
+
+`useReducer`에 대한 문서들을 보면 모두 이 방법이 useReducer를 사용하는 유일한 방법처럼 설명합니다.<br/>
+
+하지만 이 방법은 useReducer 훅을 사용할 수 있는 다양한 방법 중 하나의 방법일 뿐입니다.<br/>
+
+장점은 있지만, action에 대한 새로운 추상화를 계층화하기 시작한다면 `mobX`,`zustand`와 같은 라이브러리를 추천하고 싶습니다.<br/>
+
+즉, 추가 종속성 없이 이 패턴을 활용할 때 더 우아하기 때문에 그러한 형식을 좋아하는 사람을 위해 제안합니다.<br/>
+
+## reducer 공유하기
+
+`useReducer`의 또 다른 좋은 점은 이 훅에 의해 컨토를되는 데이터를 자식 컴포넌트에서 업데이트하고자 할 때 편리하다는 것입니다.<br/>
+`useState`에서는 여러 개의 함수들을 전달해야 했지만 `useReducer`에서는 reducer 함수만을 전달하면 됩니다.
+
+리액트 문서에서 설명하고 있는 예시는 아래와 같습니다.
+
+```jsx
+const TodosDispatch = React.createContext(null);
+
+function TodosApp() {
+  // 참고: `dispatch` 는 리렌더 간에 변하지 않습니다
+  const [todos, updateTodos] = useReducer(todosReducer);
+
+  return (
+    <TodosDispatch.Provider value={updateTodos}>
+      <DeepTree todos={todos} />
+    </TodosDispatch.Provider>
+  );
+}
+```
+
+자식 컴포넌트에서는 아래와 같이 사용하면 됩니다.
+
+```jsx
+function DeepChild(props) {
+  // action을 수행하고 싶다면 context로부터 dispatch를 전달받으면 됩니다.
+  const updateTodos = useContext(TodosDispatch);
+
+  function handleClick() {
+    updateTodos({ type: 'add', text: 'hello' });
+  }
+
+  return <button onClick={handleClick}>Add todo</button>;
+}
+```
+
+이렇게 하면 통일된 하나의 업데이트 함수를 가질 수 있을 뿐만 아니라 자식 컴포넌트로 부터<br/>
+상태가 업데이트되어도 요구 사항에 부합하도록 안전성을 보장할 수 있습니다.
+
+## 일반적인 함점
+
+`useReducer`훅의 상태 값은 항상 불변해야 함에 주의해야 합니다.<br/>
+만약 reducer함수에서 실수로 객체를 직접 변경 시켰다면 여러 가지 문제가 발생할 수 있습니다.
+
+리액트 문서에서 설명하고 있는 예시입니다.
+
+```jsx
+function reducer(state, action) {
+  switch (action.type) {
+    case 'incremented_age': {
+      // 🚩 Wrong: 기존 객체를 변경시켰습니다
+      state.age++;
+      return state;
+    }
+    case 'changed_name': {
+      // 🚩 Wrong: 기존 객체를 변경시켰습니다
+      state.name = action.nextName;
+      return state;
+    }
+    // ...
+  }
+}
+```
+
+이를 변경하면
+
+```jsx
+function reducer(state, action) {
+  switch (action.type) {
+    case 'incremented_age': {
+      // ✅ Correct: 새로운 객체를 생성합니다
+      return {
+        ...state,
+        age: state.age + 1,
+      };
+    }
+    case 'changed_name': {
+      // ✅ Correct: 새로운 객체를 생성합니다
+      return {
+        ...state,
+        name: action.nextName,
+      };
+    }
+    // ...
+  }
+}
+```
+
+이런 문제를 자주 마주치게 된다면 라이브러리(Immer)로 부터 도움을 받을 수 있습니다.
+
+## 언제 useState를 사용하고 언제 useReducer를 사용해야 하나요?
+
+보통의 경우 `useState`를 사용해도 괜찮습니다.<br/>
+상태와 검증 조건들이 복잡해지기 시작하며 추가적인 노력이 들어가기 시작한다고 느껴지면 그때 점진적으로 `useReducer`를 고려해봐도 좋습니다.
+
+복잡한 객체들에 `useReducer`를 사용하기 시작하고 상태 변경에 따른 위험에 자주 직면할 때 `Immer`를 생각해보세요.
+
+또는 상태 관리가 복잡해진 시점에 도달 했다면 `mobX`나`zustand`등 훨씬 더 확장하기 쉬운 솔루션을 검토해보는 것이 좋습니다.

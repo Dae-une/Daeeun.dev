@@ -4,11 +4,18 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 31 Jan 2023 16:46:29 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 02 Feb 2023 07:38:30 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 31 Jan 2023 16:46:29 GMT</pubDate>
+        <pubDate>Thu, 02 Feb 2023 07:38:30 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
+        <item>
+            <title><![CDATA[useState 지옥에서 벗어나기]]></title>
+            <description><![CDATA[useState 지옥에서 벗어나보자]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/Cure_for_useState_Hell</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Cure_for_useState_Hell</guid>
+            <pubDate>Thu, 02 Feb 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[웹 표준 및 웹 접근성을 고려한 UI]]></title>
             <description><![CDATA[웹 표준 및 웹 접근성을 고려한 UI]]></description>
