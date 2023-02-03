@@ -12,6 +12,10 @@ const METADATA = {
     github: 'https://github.com/Dae-une',
     about: 'https://portfolio-dae-une.vercel.app/',
   },
+  giscus: {
+    owner: 'Dae-une',
+    repo: 'Daeeun.dev',
+  },
 };
 
 export default METADATA;

@@ -7,6 +7,7 @@ import TableOfContents from 'components/TableOfContents';
 import { NextSeo } from 'next-seo';
 import METADATA from 'constants/constants';
 import styled from '@emotion/styled';
+import GiscusContainer from 'components/GiscusContainer';
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -55,6 +56,7 @@ const BlogPost: FC<BlogPostProps> = ({ post }) => {
         <TableOfContents />
         <MDXComponent />
       </PostLayout>
+      <GiscusContainer />
     </>
   );
 };
