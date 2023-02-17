@@ -4,11 +4,18 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Tue, 07 Feb 2023 07:07:41 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 17 Feb 2023 05:08:25 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 07 Feb 2023 07:07:41 GMT</pubDate>
+        <pubDate>Fri, 17 Feb 2023 05:08:25 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
+        <item>
+            <title><![CDATA[이미지 최적화에 대하여]]></title>
+            <description><![CDATA[이미지 최적화에 대하여 알아보자]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/Image_Optimization</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Image_Optimization</guid>
+            <pubDate>Fri, 17 Feb 2023 00:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Concurrent UI Pattern]]></title>
             <description><![CDATA[Concurrent UI Pattern 과 Suspense,Error Boundary]]></description>

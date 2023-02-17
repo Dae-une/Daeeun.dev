@@ -1,0 +1,188 @@
+---
+title: 이미지 최적화에 대하여
+date: 2023-02-17
+summary: 이미지 최적화에 대하여 알아보자
+tags: ['기본부터']
+---
+
+# 이미지 최적화란?
+
+이미지 최적화란 좋은 품질의 이미지를 제공하는 동시에 가능한 가장 작은 크기를 유지하는 과정이다.<br/>
+이미지를 최적화하면 최상의 형식,크기, 해상도로 이미지를 만들고 표시하여 사용자 참여를 높일 수 있다.
+
+# 이미지 최적화를 해야하는 이유
+
+<img src="https://miro.medium.com/max/660/1*jvoa4e5EhEav-SwsYjNbQw.png" width="250px" height="250px" />
+
+위의 사진을 보면, 웹 페이지에서 대부분의 용량을 차지하는 것이 이미지임을 알 수 있다.<br/>
+만약 이미지를 최적화 한다면 아래와 같은 이점이 있다.
+
+- 더 나은 페이지 성능 : 웹 페이지 바이트를 절약할 수 있으며, 브라우저가 다운로드 해야하는 바이트가 줄어들게 된다.<br/>
+  크고 최적화 되지 않은 이미지는 페이지 로드를 지연시킨다. 웹 사이트가 빠를수록 유저들은 좋아할 것이다.<br/>
+- 사용자 경험 향상 : 사용자들은 이미지가 모두 로드되기 까지 기다리는걸 원하지 않는다.<br/>
+  이미지를 최적화 하면 콘텐츠를 더 빨리 다운로드하여 화면에 렌더할 수 있다.<br/>
+- SEO : 이미지 최적화는 SEO에도 이점이 있다.<br/>
+  최적화된 이미지는 검색엔진에 맥락 정보를 제공하고 시각적 컨텐츠의 접근성을 높인다.
+
+# 이미지를 최적화 하는법
+
+## img 태그 사용하기
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F9cae7bc7260a4814b77b883096dda2ee?format=webp&width=2000" />
+
+HTML 에 `<img/>`와 CSS background-image 속성은 모두 시각적 컨텐츠를 표시하는 비슷한 결과를 보여준다.<br/>
+하지만 둘 사이에는 조금 차이가 있다.<br/>
+
+### 연쇄적인 요청 피하기
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F9d3a1e2fea9f4791a5ed985d9c1a68ea?format=webp&width=2000" />
+HTML에서 이미지 태그를 사용하면 src 속성으로 링크를 설정할 수 있다.
+<br />
+따라서 브라우저는 초기 HTML을 가져오고 이미지를 스캔하며 우선순위가 높은 이미지를 즉시 가져오기 시작할 수 있다.
+<br />
+
+하지만, CSS에서 이미지를 로드하는 경우라면 브라우저는 HTML을 스캔하고 CSS를 가져온 다음 요소에 `background-image`가 적용된 것을 발견해야한다.<br/>
+이 모든 것이 끝난 후에만 해당 이미지를 가져올 수 있는것이다.<br/>
+
+### alt text로 이미지의 접근성 높이기
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fc1a8c8da13204130abe55887a36a68a7?format=webp&width=2000" />
+alt text는 그래픽의 기능과 모양에 대한 정확한 맥락 정보를 제공한다. <br />
+이는 사용자 경험을 개선할 뿐만 아니라, 장애가 있는 사용자들이 컨텐츠에 접근하는데 도움을 준다. <br />
+즉, 웹 접근성 또한 같이 챙길 수 있게 된다. <br />
+
+그리고 만약, 이미지 로드가 지연된다면, 사용자들은 대체 텍스트를 통해 어떤 이미지인지 알 수 있게 되어 사용자 경험 개선에도 도움이 된다.<br/>
+
+alt text가 중요한 만큼, 장식용으로만 사용된 이미지를 표시해두는 것도 중요하다.<br/>
+이미지가 컨텐츠의 일부가 아니고 페이지의 외관을 위해 존재하는 배경이미지라면<br/>
+role 속성으로 `presentation`값이 지정되면 좋다.
+
+### 지연 로딩과 async decoding으로 성능 높이기
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F8fa28a3cc8ec40f8a6edeccb7d9b8909?format=webp&width=2000" />
+
+`loading='lazy'`를 사용하면 브라우저가 뷰 포트에 없는 이미지를 로드하는데 자원을 낭비하지 않도록 도와준다.<br/>
+웹 페이지에 직접적으로 보이지 않는 모든 것은 우선순위에 밀려나며,<br/>
+자원을 절약하고 현망하게 사용하여 웹 사이트의 성능을 향상 시킬 수 있다.<br/>
+
+더 좋은 점은, 브라우저에 기본적으로 구현되어 있어 JS가 필요하지 않으며, 모든 최신브라우저에서 지원이 된다는 점이다.<br/>
+
+브라우저가 이미지를 로드하는 방법은 기본적으로 성능에 최적화 되어 있지 않다.<br/>
+이미지 디코딩은 성능에 영향을 미치므로 화면 하단의 LCP(Large Contentful Paint)가 아닌 이미지에 대해 디코딩을 먼저 할 필요가 없다.<br/>
+브라우저가 메인 스레드에서 이미지를 디코딩하지 않고 이동할 수 있도록 이미지에 `decoing='async'`를 지정할 수 있다.<br/>
+MDN은 이것을 오프스크린 이미지(사용자가 보고 있는 화면에 보이지 않는 이미지)에 사용하는 것을 권장한다.<br/>
+
+### layout shifts 피하기
+
+우리는 `layout shifts`도 피해야 한다.<br/>
+이 문제는 이미지 다운로드 전에 이미지의 정확한 크기를 지정하지 않은 상태에서 이미지가 로드될 때 발생한다.<br/>
+
+이를 피하기 위한 방법으로 2가지가 있다.
+
+첫번째로는 이미지의 `width`와 `height`지정하기<br/>
+선택적으로 CSS에 `height`을 auto로 설정하여 화면 크기가 변경될 때 이미지가 적절하게 반응하도록 한다.<br/>
+
+```jsx
+<img width="500" height="300" style="height: auto" ... />
+```
+
+또는, CSS의 새로운 `aspect-ratio`속성을 사용하여 항상 올바른 비율을 자동으로 유지할 수 있도록 한다.<br/>
+
+```jsx
+<img style="aspect-ratio: 5 / 3; width: 100%" ...>
+```
+
+`aspect-ratio`는 또한 `object-fit`, `object-position`와 매우 잘 어울린다.<br/>
+이는 배경 이미지의 background-size, background-position와 상당히 유사하다.
+
+```jsx
+.my-image {
+  aspect-ratio: 5 / 3;
+  width: 100%;
+  /* 이미지의 고유 가로 세로 비율이 다른 경우에도 가능한 공간을 채웁니다. */
+  object-fit: cover;
+}
+```
+
+### 이미지 로드 우선순위
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fadb0dd53142d47d18b740e5d9fc7a404?format=webp&width=2000" />
+
+이는 LCP이미지와 같이 이미지의 우선 순위가 매우 높은 경우 브라우저에 힌트를 주어 도움을 줄 수 있다.<br/>
+반대로, 화면 상단에 있지만 주요성이 높지 않은 이미지의 경우, 이미지의 우선 순위를 낮출 수도 있다.
+
+```jsx
+  <img class="slide-1" fetchpriority="high" />
+  <img class="slide-2" fetchpriority="low" />
+  <img class="slide-3" fetchpriority="low" />
+```
+
+### srrset으로 화면 크기와 해상도에 최적의 크기를 제공하기
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fc0d4ecb9f8524aa29b32dfc2f3c54f55?format=webp&width=2000" />
+SVG를 로드하는 경우가 아니라면 다양한 화면 크기와 해상도에 맞춰 최적의 이미지를 제공해야한다. <br />
+다양한 너비에 대해 다양한 그래픽 옵션과 함께 `srcset`속성을 사용하면 사용자들의 단말기 화면 너비에 따라서
+<br />
+서로 다른 이미지를 제공할 수 있다.
+<br />
+이는 웹사이트에 접근하는 방법과 관계없이 성능이 향상되고, 데이터 낭비가 감소하여 사용자들이 좋은 경험을 하도록 해준다.
+<br />
+
+단위는 x보단 w단위를 사용하는게 좋다.<br/>
+x단위는 픽셀의 밀도를 다루고 고정 크기의 이미지에 더 적합하다.<br/>
+반면 w단위는 화면 너비에 따라 올바른 이미지를 가져오도록 해준다.<br/>
+
+## 차세대 형식을 활용하기
+
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fb441e25165b54515b476475bd304daeb?format=webp&width=2000" />
+
+### JPEG,WebP,AVIF
+
+JPEG는 'Joint Photographic Experts Group' 의 약자이며 확장자는 '.jpg' 또는 '.jpeg' 이다.<br/>
+JPEG는 손실이 많은 압축 디지털 이미지를 만드는 데 사용할 수 있는 압축 방법이다. 크기와 품질 사이에서 절충하기 위해 압축 정도를 선택할 수 있다.<br/>
+
+WebP는 구글이 2010년에 발표한 포맷으로 파일 크기를 줄이기 위해 손실 없는 압축과 무손실 압축을 모두 사용하고 있다. <br/>
+웹사이트의 트래픽 감소 및 로딩 속도 단축을 겨냥한 것으로, 주로 사진 이미지 압축 효과가 높은 것으로 알려졌다.
+
+AVIF는 AOMedia에서 개발한 이미지 포맷으로 손실 압축과 비 손실 압축을 전부 지원하기 때문에 WebP처럼 GIF, PNG, JPEG 등의 상용 이미지 포맷을 대체할 수 있다.<br/>
+또한 애니메이션 기능이 있어 움짤로 쓸 수 있고, 압축 효율이 뛰어나다는 점에서 WebP를 닮았다.
+
+### 사용법
+
+이미지 최적화의 또 다른 좋은 방법은 압축 및 품질을 위해 Webp와 같은 차세대 형식을 사용하는 방법이다. <br/>
+Webp 이미지는 JPEG나 PN보다 파일 크기가 최소 25~30% 작다.<br/>
+webp 이미지는 기존 형식에 비해 로드 속도가 더 빠를 뿐아니라, 모바일 데이터를 적게 소모한다.<br/>
+
+모든 웹 브라우저가 webp를 지원하는 것은 아니다.<br/>
+그러나 `<source/>`와 함께 `<picture/>`태그를 사용하면 이전 버전과 호환이 되어 모든 브라우저에서 올바르게 최적화된 이미지를 보여줄 수 있다.<br/>
+
+```jsx
+<picture>
+  <source
+    type="image/avif"
+    srcset="
+      /image.avif?width=100 100w,
+      /image.avif?width=200 200w,
+      /image.avif?width=400 400w,
+      /image.avif?width=800 800w,
+      ...
+    "
+  />
+  <source
+    type="image/webp"
+    srcset="
+      /image.webp?width=100 100w,
+      /image.webp?width=200 200w,
+      /image.webp?width=400 400w,
+      /image.webp?width=800 800w,
+      ...
+    "
+  />
+  <img ... />
+</picture>
+```
+
+## 참고
+
+[웹 성능을 위한 이미지 최적화](https://velog.io/@hustle-dev/%EC%9B%B9-%EC%84%B1%EB%8A%A5%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B5%9C%EC%A0%81%ED%99%94)<br/>
+[Optimal Images in HTML](https://www.builder.io/blog/fast-images?_host=www.builder.io)<br/>
