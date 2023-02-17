@@ -9,5 +9,6 @@ import why_is_setState_asynchronousMdx from './Why_is_setState_asynchronous.mdx.
 import a11yMdx from './a11y.mdx.json' assert { type: 'json' }
 import about_useCallbackMdx from './about_useCallback.mdx.json' assert { type: 'json' }
 import concureent_ui_patternMdx from './concureent_UI_Pattern.mdx.json' assert { type: 'json' }
+import webpackLoaderMdx from './Webpack-loader.mdx.json' assert { type: 'json' }
 
-export const allPosts = [closuresMdx, cure_for_useState_hellMdx, execution_contextMdx, image_optimizationMdx, staleWhileRevalidateMdx, why_is_setState_asynchronousMdx, a11yMdx, about_useCallbackMdx, concureent_ui_patternMdx]
+export const allPosts = [closuresMdx, cure_for_useState_hellMdx, execution_contextMdx, image_optimizationMdx, staleWhileRevalidateMdx, why_is_setState_asynchronousMdx, a11yMdx, about_useCallbackMdx, concureent_ui_patternMdx, webpackLoaderMdx]

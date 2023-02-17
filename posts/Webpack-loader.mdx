@@ -1,0 +1,179 @@
+---
+title: Webpack Loader
+date: 2023-02-17
+summary: esbuild-loader,ts-loader,babel-laoder 의 차이점 알아보기
+tags: ['react']
+---
+
+리액트로 프로젝트를 만들때마다 CRA로 만들지 않고 직접 세팅을 하여 만들었다.<br/>
+세팅에는 webpack 설정이 들어가는데 babel을 트랜스 파일러로 사용해 왔다.<br/>
+웹팩이 튜토리얼 문서에도 잘 나오고, 가장 흔히 보이는 정보였기 때문인것 같다.<br/>
+
+그러다 ts-loader에 대해 알게 되었고, 그러면 또 뭐가 더있나 하고 보니 esbuild-loader가 있더라<br/>
+그래서 이번기회에 각 로더들의 차이점에 대해 알아보려 한다.<br/>
+
+# Webpack Loader
+
+웹팩은 요즘 웹 프론트엔드 개발에서 많이 사용 되는 모듈 번들러이다.<br/>
+웹팩은 기본적으로 자바스크립트 리소스를 읽고 처리 할 수 있는데, HTML,CSS,Image,Font와 같은 리소스를 모듈로 처리하려면<br/>
+별도의 전처리기를 사용하여 처리해야 한다.
+이 과정을 수행하는 것이 로더의 역할이다.<br/>
+
+# babel
+
+바벨은 최신 버전의 자바스크립트 문법을 이전 버전에서도 사용할 수 있는 문법으로 변환하는 역할을 하는 트랜스파일러 이다.<br />
+현재 대부분의 브라우저는 자바스크립트 최신 문법들을 지원하지만, <br />
+과거에 사용되었던 IE와 같은 일부 브라우저의 경우 일정 시점 이후의 문법은 지원하지 않는다.<br />
+그럼에도 아직까지 사용하는 사용자들이 있기에, 현재 문법 대신 과거의 방식으로 구현하거나<br />
+구현되지 않은 문법을 채워주는 폴리필을 사용해야한다.<br />
+
+이러한 동작을 개발자가 수시로 하기엔 번거롭고, 하지않으면 특정 문법을 사용하지 못하는 <br />
+개발 환경은 그 자체로 문제가 된다.<br />
+그래서 바벨을 이러한 동작들을 대신해준다.<br />
+
+# babel-loader
+
+[babel-loader](https://github.com/babel/babel-loader) 는 스스로를 이렇게 설명한다
+
+> 이 패키지는 바벨과 웹팩을 사용하여 자바스크립트 파일을 트랜스파일 한다.
+
+## type checking
+
+위에서 바벨은 자바스크립트를 변환해주는 트랜스파일러 라고 소개했다.<br/>
+타입스크립트 또한 런타임에는 자바스크립트가 되지만, 이건 언제까지나 변환된 후의 이야기이다.<br/>
+babel로 타입스크립트를 처리하기 위해서는 `@babel/preset-typescript`가 필요하다.<br/>
+
+`@babel/preset-typescript`는 `@babel/plugin-transform-typescript`플러그인을 포함하고 있다.
+하지만 해당 플러그인에 이러한 설명이 있다.
+
+> 이 플러그인은 TypeScript 프로그래밍 언어에서 사용되는 형식 구문에 대한 지원을 추가합니다. 그러나 이 플러그인은 전달된 JavaScript를 유형 검사하는 기능을 추가하지 않습니다. 그러기 위해서는 TypeScript를 설치하고 설정해야 합니다.
+
+즉, 해당 플러그인은 타입 구문을 지원하기 위한 플러그인이고, 별도의 타입체킹이 이루어지지 않는다.<br/>
+또한 `@babel/preset-typescript` 또한 타입체킹 기능이 있다는 말이 없다.<br/>
+
+그래서 `fork-ts-checker-webpack-plugin`을 사용하면 빌드 시에 별도로 타입을 체크해서 런타임에 결과를 확인할 수 있다.<br/>
+
+# ts-loader
+
+[ts-loader](https://github.com/TypeStrong/ts-loader)는 스스로를 이렇게 설명한다.
+
+> ts-loader는 웹팩용 TypeScript 로더입니다. 두 가지 유형의 옵션이 있습니다: TypeScript 옵션(일명 "컴파일러 옵션") 및 로더 옵션. TypeScript 옵션은 tsconfig.json 파일을 사용하여 설정해야 합니다. 로더 옵션은 웹 팩의 옵션 속성을 통해 지정할 수 있습니다
+
+위의 말을 보면 `ts-loader`는 `tsconfig.json`에 명시된 옵션에 따라 타입스크립트를 컴파일 한다는 것을 알 수 있다.<br/>
+따라서 웹팩으로 빌드된 파일이 tsconfig.json 의 target옵션에 트랜스파일링 될 것이다.<br/>
+
+ts-loader 의 단점이라면, 타입 체킹을 하는 과정이 있다 보니 babel-loader 보다 빌드 속도가 느릴 것이다.<br/>
+다만 이 부분은 `transpileOnly:true` 를 적용 시키거나,`fork-ts-checker-webpack-plugin`를 사용하면 된다고 한다.<br/>
+
+추가적으로 ts-loader는 [HMR(Hot Module Replace)를 지원하지 않는다](https://github.com/TypeStrong/ts-loader#hot-module-replacement).
+
+## type checking
+
+ts-loader는 `compiler`옵션을 제공한다.<br/>
+이 옵션은 ts-loader로 실행할 compiler를 지정할 수 있는 옵션이다.<br/>
+기본값은 typescript이며, ts-loader의 코드를 확인해 보면,<br/>
+compiler 옵션이 typescript일때, typescript 모듈을 가져와서 tsc를 이용하여 컴파일 하는 것을 볼 수 있다.<br/>
+
+# esbuild-loader
+
+[esbuild-loader](https://github.com/esbuild-kit/esbuild-loader#readme)는 이렇게 설명되어 있다.
+
+> esbuild는 초고속 ESNext & TypeScript 변환 및 JS 최소화를 지원하는 Go로 작성된 자바스크립트 번들러이다. esbuild-loader를 사용하면 확장 및 최소화를 위한 더 빠른 대안(예: babel-loader/ts-loader)을 제공하여 웹 팩 빌드에서 esbuild의 속도를 활용할 수 있습니다.
+
+설명에서 보면 esbuild-loader는 Go 언어로 작성된 모듈 번들러이다.<br/>
+자바스크립트는 인터프리터 언어이기 때문에 프로그램을 실행할 때 한줄 한줄 인터프리터가 기계어로 변환하는 작업을 실행한다.<br/>
+반면 Go언어의 경우 프로그램 실행 전 컴파일 단계에서 미리 소스 코드를 전부 기계어로 변환해 놓는다.<br/>
+실행하는 단계에서 소스코드가 기계어로 변환되는 작업이 생략된 것이다.<br/>
+
+그리고 자바스크립트는 싱글 스레드 기반이여서 한 번에 한 파일씩 순차적으로 번들링 혹은 트랜스 파일링을 하지만,<br/>
+Go언어의 경우 공유 메모리 환경 아래에서 멀티 스레드 기반으로 동작할 수 있다.<br/>
+[속도 비교](https://fe-developers.kakaoent.com/2022/220707-webpack-esbuild-loader/)
+
+## type checking
+
+esbuild-laoder 또한 타입 체킹을 제공하지 않는다.<br/>
+그래서 `fork-ts-checker-webpack-plugin`을 사용하여야 한다.<br/>
+
+## CSS ESBuildMinifyPlugin
+
+esbuild-laoder의 장점 중 하나로 CSS Minificaiton도 함께 지원한다는 것이다.<br/>
+
+> Minify란?<br/>
+> 코드를 축소하는 행위로, 코드 최소화는 코드를 최적화하여 공간을 절약하고 페이지 로드 시간을 줄이며<br/>
+> 웹사이트 대역폭 사용량을 줄이는 것을 의미한다.<br/>
+> 코드 경량화로 가장 중요한 것은 기능을 변경하지 않고 코드를 최소화 한다는 것이다.
+
+### CSS
+
+```jsx
+  const { EsbuildPlugin } = require('esbuild-loader')
+  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+  module.exports = {
+    ...,
+
+    optimization: {
+      minimizer: [
+        new EsbuildPlugin({
+          target: 'es2015',
+           css: true  // optimize-css-assets-webpack-plugin 대체
+        })
+      ]
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader'
+          ]
+        }
+      ]
+    },
+
+    plugins: [
+      new MiniCssExtractPlugin()
+    ]
+  }
+```
+
+### CS-in-JS
+
+```jsx
+  module.exports = {
+    ...,
+
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'esbuild-loader',
+              options: {
+                minify: true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+```
+
+# 마무리
+
+3가지 로더에 대해 살짝 정도만 알아 봤는데, 확실히 서로 다른 장단점이 있는 듯 하다.<br/>
+만약 다시 개발환경을 세팅할 일이 생긴다면
+production 모드는 esbuild-loader로 하고,<br/>
+dev 모드는 ts-loader + fork-ts-checker-webpack-plugin + ESBuildMinifyPlugin 로 하면 좋지 않을까 싶다.<br/>
+추가적으로 [babel-loader와 ts-loader의 빌드 결과가 다른 현상](https://jeonghwan-kim.github.io/dev/2021/03/08/babel-typescript.html)을 읽어보면 좋을 것 같다.
+
+참고
+[Webpack 빌드에 날개를 달아줄 Esbuild-Loader](https://fe-developers.kakaoent.com/2022/220707-webpack-esbuild-loader/)<br/>
+[매일 쓰는 babel-loader에 질렸다면 (ts-loader, esbuild-loader)](https://usage.tistory.com/152)<br/>
+[babel-loader와 ts-loader 그리고 esbuild-loader](https://victor-log.vercel.app/post/babel-loader-and-ts-loader-and-esbuild-loader/)
