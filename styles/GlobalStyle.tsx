@@ -61,6 +61,7 @@ const style = css`
   }
   pre > code {
     background: transparent;
+    white-space: pre-wrap;
   }
 
   /* code container */
