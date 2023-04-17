@@ -28,14 +28,14 @@ tags: ['기본부터']
 
 ## img 태그 사용하기
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F9cae7bc7260a4814b77b883096dda2ee?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F9cae7bc7260a4814b77b883096dda2ee?format=webp&width=2000" loading="lazy" />
 
 HTML 에 `<img/>`와 CSS background-image 속성은 모두 시각적 컨텐츠를 표시하는 비슷한 결과를 보여준다.<br/>
 하지만 둘 사이에는 조금 차이가 있다.<br/>
 
 ### 연쇄적인 요청 피하기
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F9d3a1e2fea9f4791a5ed985d9c1a68ea?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F9d3a1e2fea9f4791a5ed985d9c1a68ea?format=webp&width=2000" loading="lazy" />
 HTML에서 이미지 태그를 사용하면 src 속성으로 링크를 설정할 수 있다.
 <br />
 따라서 브라우저는 초기 HTML을 가져오고 이미지를 스캔하며 우선순위가 높은 이미지를 즉시 가져오기 시작할 수 있다.
@@ -46,7 +46,7 @@ HTML에서 이미지 태그를 사용하면 src 속성으로 링크를 설정할
 
 ### alt text로 이미지의 접근성 높이기
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fc1a8c8da13204130abe55887a36a68a7?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fc1a8c8da13204130abe55887a36a68a7?format=webp&width=2000" loading="lazy" />
 alt text는 그래픽의 기능과 모양에 대한 정확한 맥락 정보를 제공한다. <br />
 이는 사용자 경험을 개선할 뿐만 아니라, 장애가 있는 사용자들이 컨텐츠에 접근하는데 도움을 준다. <br />
 즉, 웹 접근성 또한 같이 챙길 수 있게 된다. <br />
@@ -59,7 +59,7 @@ role 속성으로 `presentation`값이 지정되면 좋다.
 
 ### 지연 로딩과 async decoding으로 성능 높이기
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F8fa28a3cc8ec40f8a6edeccb7d9b8909?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F8fa28a3cc8ec40f8a6edeccb7d9b8909?format=webp&width=2000" loading="lazy" />
 
 `loading='lazy'`를 사용하면 브라우저가 뷰 포트에 없는 이미지를 로드하는데 자원을 낭비하지 않도록 도와준다.<br/>
 웹 페이지에 직접적으로 보이지 않는 모든 것은 우선순위에 밀려나며,<br/>
@@ -106,7 +106,7 @@ MDN은 이것을 오프스크린 이미지(사용자가 보고 있는 화면에 
 
 ### 이미지 로드 우선순위
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fadb0dd53142d47d18b740e5d9fc7a404?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fadb0dd53142d47d18b740e5d9fc7a404?format=webp&width=2000" loading="lazy" />
 
 이는 LCP이미지와 같이 이미지의 우선 순위가 매우 높은 경우 브라우저에 힌트를 주어 도움을 줄 수 있다.<br/>
 반대로, 화면 상단에 있지만 주요성이 높지 않은 이미지의 경우, 이미지의 우선 순위를 낮출 수도 있다.
@@ -119,7 +119,7 @@ MDN은 이것을 오프스크린 이미지(사용자가 보고 있는 화면에 
 
 ### srrset으로 화면 크기와 해상도에 최적의 크기를 제공하기
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fc0d4ecb9f8524aa29b32dfc2f3c54f55?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fc0d4ecb9f8524aa29b32dfc2f3c54f55?format=webp&width=2000" loading="lazy" />
 SVG를 로드하는 경우가 아니라면 다양한 화면 크기와 해상도에 맞춰 최적의 이미지를 제공해야한다. <br />
 다양한 너비에 대해 다양한 그래픽 옵션과 함께 `srcset`속성을 사용하면 사용자들의 단말기 화면 너비에 따라서
 <br />
@@ -134,7 +134,7 @@ x단위는 픽셀의 밀도를 다루고 고정 크기의 이미지에 더 적�
 
 ## 차세대 형식을 활용하기
 
-<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fb441e25165b54515b476475bd304daeb?format=webp&width=2000" />
+<img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fb441e25165b54515b476475bd304daeb?format=webp&width=2000" loading="lazy" />
 
 ### JPEG,WebP,AVIF
 

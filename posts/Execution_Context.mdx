@@ -12,7 +12,7 @@ tags: ['js', '기본부터']
 이 중에서 렉시컬 환경(Lexical Environment) 카테고리의 <br/>
 레코드(Environment Record)와 아우터(Outer Environment Reference)를 중점적으로 살펴볼 예정이다.
 
-<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2Ff513eeb8-6c63-4596-ad30-78dcec58f727%2Fimage.png" />
+<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2Ff513eeb8-6c63-4596-ad30-78dcec58f727%2Fimage.png" loading="lazy" />
 
 자바스크립트 코드를 실행시키면 자바스크립트 엔진은 콜스택 에 실행 컨텍스트를 담아서 관리 한다. <br/>
 스택 이라는 이름 답게,
@@ -20,12 +20,15 @@ tags: ['js', '기본부터']
 이때 전역 실행 컨텍스트 안에는 Record 와 Outer가 담기게 된다.<br/>
 그리고 마지막에 넣은 함수의 실행 컨텍스트가 활성화 된다고 보면 된다.
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fee08b5a4-97cc-47b3-8bf2-96f16c587603%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.15.18.png?table=block&id=a983030d-fffc-48c5-8b63-bbed6868578b&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fee08b5a4-97cc-47b3-8bf2-96f16c587603%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.15.18.png?table=block&id=a983030d-fffc-48c5-8b63-bbed6868578b&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 
 함수가 종료되면 실행 컨텍스트는 pop 되어 위에서 부터 하나씩 빠져나간다.<br/>
 모든 실행 컨텍스트가 실행이 되면, 전역 컨텍스트 가 마지막으로 사라지게 된다.<br/>
 
-<img src="https://miro.medium.com/max/1400/1*bDebsOuhRx9NMyvLHY2zxA.gif" />
+<img src="https://miro.medium.com/max/1400/1*bDebsOuhRx9NMyvLHY2zxA.gif" loading="lazy" />
 
 # Record로 호이스팅 이해하기
 
@@ -45,7 +48,10 @@ console.log(TVChanel); // Netflix
 
 ## 변수 호이스팅 (Variable Hoisting)
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fdefba497-a9a4-4c43-ae24-18bd7433173d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.25.11.png?table=block&id=b701d6bb-d384-4a9f-a036-c116bb5ab719&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fdefba497-a9a4-4c43-ae24-18bd7433173d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.25.11.png?table=block&id=b701d6bb-d384-4a9f-a036-c116bb5ab719&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 
 자바스크립트 엔진은 코드를 실행하면 <br/>
 
@@ -62,7 +68,7 @@ console.log(TVChanel); // Netflix
 
 즉, `var`는 선언과 초기화가 동시에 이루어지지만, `const` 나 `let`은 선언만 실행이 되고 초기화가 진행되지 않는다. <br/>
 
-<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2Fc2abb179-c280-496a-a449-5cbd83ae7513%2Fimage.png" />
+<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2Fc2abb179-c280-496a-a449-5cbd83ae7513%2Fimage.png" loading="lazy" />
 
 이렇게 선언 이전에 식별자를 참조할 수 없는 구역을 일시적 사각지대 TDZ(Temporal Dead Zone)이라고 부른다. <br/>
 
@@ -70,21 +76,27 @@ console.log(TVChanel); // Netflix
 
 ### 함수 표현식
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F98850879-4c5e-464f-b62e-653390acfec5%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.36.19.png?table=block&id=b5a04fde-38df-4fd0-b6b1-4b359a9c1e3c&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F98850879-4c5e-464f-b62e-653390acfec5%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.36.19.png?table=block&id=b5a04fde-38df-4fd0-b6b1-4b359a9c1e3c&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 자바스크립트에서는 함수를 변수에 담아 표현할 수 있다. <br />
 이를 함수 표현식이라고 하는데, 함수를 변수에 담고 있기 때문에 위의 변수 호이스팅과 똑같이 동작한다.
 <br />
 
 ### 함수 선언문
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0d37b0c2-875c-4b00-a013-1bc916dd0c3d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.37.46.png?table=block&id=a3e14c19-e225-4fb4-9872-bf492497fac2&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0d37b0c2-875c-4b00-a013-1bc916dd0c3d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.37.46.png?table=block&id=a3e14c19-e225-4fb4-9872-bf492497fac2&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 반면 위와 같이 fuction을 사용하여 선언하는 경우를 함수 선언문 방식이라 한다.
 <br />
 이 방식은 자바스크립트 엔진이 함수의 선언과 동시에 완성된 함수 객체를 생성하기기 때문에 에러 없이 실행이 된다. <br />
 또한 함수의 선언과 동시에 함수 객체를 생성하기 때문에 초기화 전에도 함수를 사용할 수 있기 때문에 지양하는 방식이라 한다.
 <br />
 
-<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2F2694cfcc-010c-4ecc-be17-c6ee56d05d25%2Fimage.png" />
+<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2F2694cfcc-010c-4ecc-be17-c6ee56d05d25%2Fimage.png" loading="lazy" />
 
 # Outer로 스코프 체이닝 이해하기
 
@@ -95,11 +107,17 @@ Record와 Outer가 있다.
 
 ## 식별자 결정
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc79dd468-78f0-468c-84fa-20acc5ae691d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.40.45.png?table=block&id=0e5fb245-587d-4ac4-8cab-c14e502c37fb&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc79dd468-78f0-468c-84fa-20acc5ae691d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.40.45.png?table=block&id=0e5fb245-587d-4ac4-8cab-c14e502c37fb&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 위와 같이 lamp라는 변수가 함수 바깥에도 있고, 내부에도 있는 경우 어떤 변수를 선택할 것인가의 문제를 <br />
 식별자 결정이라고 하며, 이 과정에서 outer가 사용된다.
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F98cc3674-171a-497d-ba6d-c948376588e2%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.41.43.png?table=block&id=a0dadf8c-0cae-48a9-bd44-1bd204364478&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F98cc3674-171a-497d-ba6d-c948376588e2%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.41.43.png?table=block&id=a0dadf8c-0cae-48a9-bd44-1bd204364478&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 기본적으로 자바스크립트 엔진은 현재 활성화 된 실행 컨텍스트를 기준으로 식별자를 확인하며 <br />
 만약 식별작자 현재 실행 컨텍스트 에 없다면 outer를 통해 한 단계 바깥, 즉 이전의 실행 컨텍스트에서 식별자를 찾는다.
 <br />
@@ -108,7 +126,10 @@ Record와 Outer가 있다.
 
 또한, 이렇게 동일한 식별자가 선언될 경우 상위 식별자가 가려지게 되는데 이를 `변수 새도잉`이라고 한다.<br/>
 
-<img src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F128d6d1b-7c09-455f-96b0-56f55a18694d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.43.31.png?table=block&id=afa73a14-a632-4194-983c-f0ba8407c00e&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2" />
+<img
+  src="https://classic-sandal-da4.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F128d6d1b-7c09-455f-96b0-56f55a18694d%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2022-05-05_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.43.31.png?table=block&id=afa73a14-a632-4194-983c-f0ba8407c00e&spaceId=56f598aa-e89d-4146-acaa-3fed6afbd13b&width=2000&userId=&cache=v2"
+  loading="lazy"
+/>
 
 # 정리
 
@@ -124,7 +145,7 @@ Record와 Outer가 있다.
 - 스코프가 호출되는 위치와 상관없이 어디에 선언되었느냐에 따라 정적으로 결정이된다.
 - 하나의 컨텍스트 개념으로 묶어놨기 때문에 자바스크립트 엔진은 더욱 빠르고 효율적으로 식별자를 결정할 수 있다.
 
-<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2F10af7386-331f-4a9f-8e78-9cfb7818b0ef%2Fimage.png" />
+<img src="https://velog.velcdn.com/images%2Fminbr0ther%2Fpost%2F10af7386-331f-4a9f-8e78-9cfb7818b0ef%2Fimage.png" loading="lazy" />
 
 ### Ref
 

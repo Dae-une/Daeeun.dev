@@ -25,12 +25,12 @@ stale-while-revalidate 를 포함한 Cache-Control 응답 헤더는 max-age 를 
 위와 같은 HTTP 요청이 1초(max-age)이내에 반복적으로 발생한다면,
 유효성 검증 없이 캐싱된 컨텐츠를 반환합니다.
 
-<img src="https://youthfulhps.dev/static/f9e7bb4b3dee1eadcc36789a1ce9936b/9cab2/swr-flow-1.png" />
+<img src="https://youthfulhps.dev/static/f9e7bb4b3dee1eadcc36789a1ce9936b/9cab2/swr-flow-1.png" loading="lazy" />
 
 HTTP요청이 1 ~ 60초(max-age~ swr)사이에 반복적으로 발생할 경우,
 우선 캐싱된 낡은 컨텐츠를 반환하고, 이와 동시에 캐싱된 컨텐츠를 새로운 컨텐츠로 채우도록 재검증 요청이 발생합니다.
 
-<img src="https://youthfulhps.dev/static/4cfd14b60aa1d85a5dc28e2a9770979f/9cab2/swr-flow-2.png" />
+<img src="https://youthfulhps.dev/static/4cfd14b60aa1d85a5dc28e2a9770979f/9cab2/swr-flow-2.png" loading="lazy" />
 
 HTTP 요청이 60초(swr) 이후 시점에 발생한다면, 요청이 서버로 전달되어 컨텐츠를 반환 받아 로컬 캐시를 새로운 응답으로 채웁니다.
 
