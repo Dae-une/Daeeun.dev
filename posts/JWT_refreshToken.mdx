@@ -1,0 +1,201 @@
+---
+title: RefreshToken 도입기
+date: 2023-04-17
+summary: refreshToken 도입기 (feat. React-query)
+tags: ['삽질', 'react']
+---
+
+사이드 프로젝트를 진행하면서 사용자 인증/인가 를 구현하다 겪은 일을 기록해봅니다.
+
+# JWT
+
+JWT 토큰은 기본적으로 accessToken만으로도 서버에서 secret key를 통한 서명으로 인해 토큰 위변조 여부를 확인하여
+사용자 인가처리를 할 수 있습니다.<br/>
+하지만, 토큰이 탈취될 가능성을 고려하여 대부분 accessToken의 만료 기간을 짧게 설정하여 탈취 후 악용의 위험성을 최소화 합니다.
+
+accessToken의 만료기간이 짧아짐에 따라, 사용자는 인증에 대한 부분을 여러번 겪어야 하게 됩니다.<br/>
+이러한 불편함을 해소하고, 보안 취약점을 해결하고자 RefreshToken을 사용 했습니다.
+
+RefreshToken의 경우 백엔드 측에서 쿠키에 담아 httpOnly와 Secure 를 걸어서 사용했습니다.
+
+httpOnly의 경우 스크립트를 이용하여 쿠키에 접근하는것을 차단하기 위해 (XSS 공격)에 대해 대응하기 위해 사용하였으며,
+Secure 는 클라이언트의 환경에서 HTTPS 통신일 때에만 쿠키를 전달 하기 때문에, 외부의 공격으로 부터 보호하기 위해 사용하였습니다.
+
+<img src="https://maruzzing.github.io/images/jwt_auth_flow.png" alt="tokenFlow" width="500px" height="500px" />
+
+# Axios Interceptors
+
+axios의 interceptors를 이용하면 요청(request)나 응답(response)을 가로채 원하는 로직을 실행 시킬 수 있습니다.
+
+## axios interceptors request
+
+우선 interceptors를 이용하여 매 요청마다 Header의 Authorization에 accessToken을 담아서 보냈습니다.
+
+```jsx
+api.interceptors.request.use((config) => {
+  const accessToken = getAccessToken();
+  if (config.headers && accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
+});
+```
+
+## axios interceptors response
+
+다음으로, 클라이언트가 백엔드로 부터 401 에러를 받았을 경우, refeshToken을 이용하여 accessToken을 새롭게 변경하고,<br/>
+기존 요청에 headers 에 Authorization을 새롭게 발급 받은 accessToken으로 변경하여 재 요청을 보내도록 코드를 작성하였습니다.
+
+```jsx
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const { config, response } = error;
+    if (response.status === 401) {
+      const originalRequest = config;
+
+      await reTakeToken();
+      const accessToken = getAccessToken();
+      originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+      return api(originalRequest);
+    }
+    return Promise.reject(error);
+  },
+);
+```
+
+config에는 아래와 같은 정보들이 들어 있습니다.
+
+<img src="/static/JWT_refreshToken/config.png" alt="config" width="400px" height="400px" />
+
+## 문제1. 다중 요청
+
+위의 코드를 기반으로, 테스트를 하다보면 무엇인가 이상한 점이 하나 생긴다.<br/>
+앱을 구동하다 보면 여러 요청이 동시 다발적으로 또는 아주 짧은 간격으로 발생하게 될 수 있다.<br/>
+위 코드는, 한 요청으로 reTakeToken을 통해 토큰이 재발급 되는 동안, 다른 요청이 발생된다면,<br/>
+토큰이 여러번 재발급 되어, 첫번째에 발급한 토큰이 유효하지 않게 될 수 있다.<br/>
+
+<img src="/static/JWT_refreshToken/multy.png" alt="다중요청" width="100%" height="200px" />
+
+위 사진은 일부러 토큰을 변조해서 테스트 하다보니 401이 아닌 403이 나온 모습이다.<br/>
+하지만 실제로 이용하다보면 401이 나올것이고, 그로 인해 여러번 리프레시 토큰이 재발급 될 것이다.<br/>
+
+위와 같은 일이 발생하지 않기 위해서 잠금장치로 활용하기 위한 변수를 하나 만들어 사용했다.<br/>
+또한, 재발급 받는 동안 들어온 요청을 저장하여 재발급 된 후 요청을 처리하기 위한 코드를 추가하였다.
+
+```jsx
+let lock = false;
+let subscribers: ((token: string) => void)[] = [];
+
+const addRefreshSubscriber = (callback: (token: string) => void) => {
+  subscribers.push(callback);
+};
+
+const onRefreshed = (token: string) => {
+  subscribers.forEach((callback) => callback(token));
+  subscribers = [];
+};
+
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const { config, response } = error;
+    if (response.status === 401) {
+      const originalRequest = config;
+
+      if (!lock) {
+        lock = true;
+        await reTakeToken();
+        const accessToken = getAccessToken();
+        if (accessToken) {
+          originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+          console.log(originalRequest);
+          api(originalRequest);
+          onRefreshed(accessToken);
+          lock = false;
+          return;
+        }
+      }
+
+      const reTry = new Promise((resolve) => {
+        addRefreshSubscriber((token: string) => {
+          originalRequest.headers['Authorization'] = `Bearer ${token}`;
+          resolve(api(originalRequest));
+        });
+      });
+
+      return reTry;
+    }
+    return Promise.reject(error);
+  },
+);
+```
+
+코드를 보면 `lock` 변수를 이용하여, 처음 들어온 요청에서 토큰을 재발급 받고<br/>
+그 사이에 들어온 요청들은 배열에 callback을 저장하여, 토큰을 재 발급 받은 후, 요청을 처리하는 모습이다.
+
+## 문제2. React-Query를 사용하는데...
+
+여기까지 하면 끝날 줄 알았다.<br/>
+요청을 잘 저장하고, 다시 잘 요청하는 모습까지 잘 확인했다.
+
+<img src="/static/JWT_refreshToken/success.png" alt="success" width="100%" height="200px" />
+
+하지만 무엇인가 이상한 점이 하나 있었다.<br/>
+리액트 쿼리를 사용하여 요청을 처리하고 서버데이터를 관리하는데,<br/>
+분명 통신은 성공적으로 이루어졌고, 데이터 또한 잘 왔다.<br/>
+하지만, mutation 에 onSuccess가 작동하지 않는 것이다...!!<br/>
+
+잘 생각해보니, 2번째 요청은 react-query를 이용한것이 아닌, axios를 이용해 통신을 하였기 때문에<br/>
+당연히, onSuccess가 작동할리가 없는것이 였다.<br/>
+
+이를 해결하기 위해 여러가지 시도를 해보고, 고민을 하고, 공식 문서도 엄청 열심히 살펴보았는데...<br/>
+마땅한 자료를 찾지 못하였고, 2번째 시도를 axios가 아닌 react-query를 이용하여 통신할 방법도 찾지 못하였다.<br/>
+
+그러던 중 갑자기 든 생각이, react-query는 에러가 발생하면 retry를 하지 않나...?<br/>
+그러면 401에러가 난 상황에서, accessToken을 재발급 받으면 retry 를 할때에는 정상적인
+accessToken을 이용하여 요청을 하지 않을까? 라는 생각이 들었다.
+
+```jsx
+const queryClient = new QueryClient({
+  defaultOptions: {
+    mutations: {
+      retry: 2,
+    },
+    queries: {
+      retry: 2,
+    },
+  },
+});
+```
+
+retry가 default 0이라 별도로 설정을 해주고
+
+```jsx
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  async (error) => {
+    const { config, response } = error;
+    if (response.status === 401) {
+      const originalRequest = config;
+
+      if (!lock) {
+        lock = true;
+        await reTakeToken();
+        lock = false;
+        return;
+      }
+    }
+    return Promise.reject(error);
+  },
+);
+```
+
+불필요한 코드를 지워 재시도하였더니, 아주아주 잘된다. <br/>
+조금 삽질한 느낌이 크지만, 그래도 덕분에 공식문서도 쭉 읽어보고, 여러가지 찾아보게 되었으니 좋은게 좋은거 아니겠는가
