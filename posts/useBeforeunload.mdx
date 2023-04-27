@@ -1,0 +1,133 @@
+---
+title: 실수로 인한 페이지 이탈 방지하기
+date: 2023-04-27
+summary: 실수로 인한 페이지 이탈을 방지하기
+tags: ['react']
+---
+
+프로젝트를 진행하던 중, 사용자가 작성해야 할 부분이 많은 페이지들이 몇몇 존재하였다.<br/>
+사용자가 작성을 하다가 실수로 뒤로가기 또는 새로고침을 할 경우, 이전에 작성하였던 내용이 다 사라지기 때문에<br/>
+이를 방지할 방법이 필요했다.
+
+분명 이에 대한 대비책이 마련되어 있을거라 생각을 하였고, 검색해본결과 `react-router`에서 `<Prompt/>` 라는 API를 제공하였다.<br/>
+하지만, 아쉽게도 v6로 업데이트 되면서 이 기능이 사라졌다고 한다.<br/>
+여전히 존재한다 해도, 커스텀이 불가능하였기에 이 기능은 사용하지 않았을듯 하다.<br/>
+
+# History
+
+History 는 브라우저의 이전 및 다음 페이지에 대한 정보를 저장하는 객체이다.<br/>
+이 객체는 브라우저의 주소 표시 줄과 함께 작동하며, 주소 표시 줄을 업데이트 하거나 브라우저에서 페이지를 이동할 때마다 업데이트 된다.<br/>
+
+이 정보는 스택으로 저장되어 있으며, 사용자가 뒤로가기 또는 앞으로가기 버튼을 클릭하거나 특정 URL을 입력하여 페이지를 탐색할 때마다 스택에 업데이트된다.<br/>
+
+## React Router, Browser
+
+history는 react router 에도 존재하고, Browser에도 존재한다.
+
+브라우저의 history는 사용자가 방문한 모든 웹 페이지의 기록을 관리하는 브라우저의 내장 기능이다.<br/>
+
+반면, react router의 history는 브라우저의 history를 추상화한 객체로, React 애플리케이션에서 라우팅을 관리하는데 사용된다.<br/>
+이 객체는 브라우저의 history와 유사하게 동작하지만, react router의 라우터가 라우팅을 처리하고, 브라우저의 URL을 업데이트하는데 사용된다.<br/>
+react router의 history 는 브라우저의 history와 달리, 브라우저의 기록을 직접 수정하지 않고, 애플리케이션 내에서만 사용이 된다.
+
+즉, React Router의 history는 React 애플리케이션에서 라우팅을 관리하는 데 사용되고<br/>
+브라우저의 history는 브라우저에서 사용자의 웹 페이지 방문 기록을 관리하는 데 사용된다
+
+하지만 React Router의 history도 v6로 올라오면서 사라져버렸고, 별도로 설치를 해야한다<br/>
+나는 브라우저의 history를 이용하기로 하였다.
+
+아래는 브라우저의 history를 콘솔에 찍었을 때의 이미지 이다.
+
+<img src="/static/useBeforeunload/history.png" alt="history" width="50%" loading="lazy" />
+
+## popstate
+
+`popstate` 이벤트는 브라우저의 히스토리 스택이 변경될 때 발생하는 이벤트이다.<br/>
+예를 들어, 브라우저에서 뒤로가기 버튼을 클릭하거나, `history.back()` 함수를 호출하면 히스토리 스택이 변경되며, 이때 'popstate'이벤트가 발동한다.<br/>
+
+'popstate'이벤트는 window 객체의 'popstate'메서드를 호출하여 수동으로 발생 시킬 수도 있다.<br/>
+이렇게 하면 히스토리에 스택이 변경되지 않아도, 'popstate'이벤트를 발생시킬 수 있다.<br/>
+
+또는 'addEventListener' 메서드를 이용하여 등록할 수 있다.<br/>
+등록된 핸들러는 히스토리 스택이 변경될 때마다 호출이 된다.<br/>
+'popstate'이벤트 객체는 'state'의 속성을 가지며, 이 속성은 'pushState'와 'replaceState' 메서드에서 전달된 상태 객체를 나타낸다.<br/>
+
+### pushState
+
+'pushState'메소드는 새로운 항목을 세션 히스토리에 추가한다.<br/>
+이 메서드는 브라우저의 URL의 경로, 쿼리 매개 변수 및 해시 값과 함께 새로운 항목을 만들 수 있다.<br/>
+
+```jsx
+window.history.pushState(state, 'title', [, url]);
+```
+
+'pushState'의 첫 번째 인수는 상태 객체이며, 두번째 인수는 페이지의 제목이고, 세번째 인수는 URL주소 이다.<br/>
+
+### replaceState
+
+'replaceState' 메서드는 새로운 URL을 사용하여 기존 항목을 변경한다.<br/>
+'pushState'와 마찬가지로 같은 매개변수를 받는다.
+
+```jsx
+window.history.replaceState(state, 'title', [, url]);
+```
+
+## beforeunload
+
+`beforeunload` 이벤트는 페이지를 떠날 때 실행되는 이벤트이며, 이 이벤트를 이용하여 페이지를 떠날 때 사용자에게 경고 메세지를 보여줄 수 있다.<br/>
+하지만, 새로고침을 막기 위해선 시스템 알럿을 사용할 수 밖에 없다.<br/>
+
+# 전체 코드
+
+```jsx
+import { useEffect } from 'react';
+import { PREVENT_MESSAGE } from '../constants/Prevent';
+import usePopup from './PopUp/usePopUp';
+
+interface usePreventEventProps {
+  when: boolean;
+}
+
+const useBeforeunload = ({ when }: usePreventEventProps) => {
+  const { openPopup, closePopup } = usePopup();
+
+  const handleConfirm = () => {
+    closePopup();
+    history.back();
+  };
+
+  const preventGoBack = () => {
+    openPopup({
+      message: PREVENT_MESSAGE,
+      confirmText: '확인',
+      cancelText: '취소',
+      handleConfirm: handleConfirm,
+      handleClose: closePopup,
+    });
+  };
+
+  const blockRefresh = (event: BeforeUnloadEvent) => {
+    event.preventDefault();
+    event.returnValue = '';
+  };
+
+  useEffect(() => {
+    if (!when) return;
+    window.addEventListener('beforeunload', blockRefresh);
+    return () => {
+      window.removeEventListener('beforeunload', blockRefresh);
+    };
+  }, [when]);
+
+  useEffect(() => {
+    if (!when) return;
+    history.pushState(null, '', location.pathname);
+    window.addEventListener('popstate', preventGoBack);
+    return () => {
+      window.removeEventListener('popstate', preventGoBack);
+    };
+  }, [when]);
+};
+
+export default useBeforeunload;
+```

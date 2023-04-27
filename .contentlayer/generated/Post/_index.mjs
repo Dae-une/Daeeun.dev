@@ -12,5 +12,6 @@ import a11yMdx from './a11y.mdx.json' assert { type: 'json' }
 import about_useCallbackMdx from './about_useCallback.mdx.json' assert { type: 'json' }
 import concureent_ui_patternMdx from './concureent_UI_Pattern.mdx.json' assert { type: 'json' }
 import setState_is_synchronousMdx from './setState_is_synchronous.mdx.json' assert { type: 'json' }
+import useBeforeunloadMdx from './useBeforeunload.mdx.json' assert { type: 'json' }
 
-export const allPosts = [closuresMdx, cure_for_useState_hellMdx, execution_contextMdx, image_optimizationMdx, jwt_refreshTokenMdx, staleWhileRevalidateMdx, webpackLoaderMdx, why_is_setState_asynchronousMdx, a11yMdx, about_useCallbackMdx, concureent_ui_patternMdx, setState_is_synchronousMdx]
+export const allPosts = [closuresMdx, cure_for_useState_hellMdx, execution_contextMdx, image_optimizationMdx, jwt_refreshTokenMdx, staleWhileRevalidateMdx, webpackLoaderMdx, why_is_setState_asynchronousMdx, a11yMdx, about_useCallbackMdx, concureent_ui_patternMdx, setState_is_synchronousMdx, useBeforeunloadMdx]

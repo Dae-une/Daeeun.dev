@@ -4,14 +4,21 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 19 Apr 2023 10:13:54 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 27 Apr 2023 09:58:28 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 19 Apr 2023 10:13:54 GMT</pubDate>
+        <pubDate>Thu, 27 Apr 2023 09:58:28 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
         <item>
-            <title><![CDATA[setState 비동기가 아닌 동기 함수이다.]]></title>
-            <description><![CDATA[setState 파헤쳐보기]]></description>
+            <title><![CDATA[실수로 인한 페이지 이탈 방지하기]]></title>
+            <description><![CDATA[실수로 인한 페이지 이탈을 방지하기]]></description>
+            <link>https://daeeun-dev.vercel.app//blogs/useBeforeunload</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/useBeforeunload</guid>
+            <pubDate>Thu, 27 Apr 2023 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[setState는 비동기가 아닌 동기 함수이다.]]></title>
+            <description><![CDATA[setState는 동기이지만 렌더링을 비동기로 할 뿐이다.]]></description>
             <link>https://daeeun-dev.vercel.app//blogs/setState_is_synchronous</link>
             <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/setState_is_synchronous</guid>
             <pubDate>Wed, 19 Apr 2023 00:00:00 GMT</pubDate>
