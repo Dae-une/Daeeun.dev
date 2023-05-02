@@ -28,14 +28,14 @@ const Home: FC<PostType> = ({ posts, tags, totalPage }) => {
       <Title />
       <Tags tags={tags} currentTagPostCount={allPosts.length} />
       <PostGrid posts={posts} />
-      {totalPage > 1 && <Paigination totalPage={totalPage} currentPage={currentPage} />}
+      {/* {totalPage > 1 && <Paigination totalPage={totalPage} currentPage={currentPage} />} */}
     </>
   );
 };
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
   const posts = allPosts.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
   const totalPage = Math.ceil(allPosts.length / POST_COUNT);
   const tags = getAllTags(allPosts);
