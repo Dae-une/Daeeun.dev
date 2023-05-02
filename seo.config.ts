@@ -1,5 +1,5 @@
 import { DefaultSeoProps } from 'next-seo';
-import METADATA from './constants/constants';
+import { METADATA } from './constants/constants';
 
 const DEFAULT_SEO: DefaultSeoProps = {
   titleTemplate: `%s | ${METADATA.headerTitle}`,

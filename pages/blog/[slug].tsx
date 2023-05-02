@@ -5,7 +5,7 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import PostLayout from 'components/PostLayout';
 import TableOfContents from 'components/TableOfContents';
 import { NextSeo } from 'next-seo';
-import METADATA from 'constants/constants';
+import { METADATA } from 'constants/constants';
 import styled from '@emotion/styled';
 import GiscusContainer from 'components/GiscusContainer';
 

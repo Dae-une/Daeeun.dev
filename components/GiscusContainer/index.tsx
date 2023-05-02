@@ -1,5 +1,5 @@
 import Giscus from '@giscus/react';
-import METADATA from 'constants/constants';
+import { METADATA } from 'constants/constants';
 
 const GiscusContainer = () => {
   return (

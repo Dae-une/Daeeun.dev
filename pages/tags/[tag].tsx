@@ -1,7 +1,7 @@
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
 import Title from 'components/Title';
-import METADATA from 'constants/constants';
+import { METADATA, POST_COUNT } from 'constants/constants';
 import { allPosts, Post } from 'contentlayer/generated';
 import { NextSeo } from 'next-seo';
 import { GetStaticPaths, GetStaticProps } from 'next/types';
@@ -39,7 +39,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const POST_COUNT = 10;
   const tags = getAllTags(allPosts);
   const tag = String(params?.tag).toLowerCase();
   const posts = allPosts.filter((post) => post.tags.includes(tag));

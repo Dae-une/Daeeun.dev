@@ -1,4 +1,4 @@
-const METADATA = {
+export const METADATA = {
   headerTitle: 'Daeeun. Library',
   repo: 'https://github.com/Dae-une/Daeeun.dev',
   meta: {
@@ -18,4 +18,5 @@ const METADATA = {
   },
 };
 
-export default METADATA;
+export const ALL_POST_TAG = 'AllPosts';
+export const POST_COUNT = 10;

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Tags as TagsType } from 'utils/getAllTags';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
+import { ALL_POST_TAG } from 'constants/constants';
 
 interface TagsProps {
   tags: TagsType;
@@ -27,7 +28,7 @@ const Tags: FC<TagsProps> = ({ tags, currentTagPostCount }) => {
         transition={{ type: 'spring', damping: 20 }}
       >
         <Style.TagTitle>
-          <span>{tag ?? 'AllPosts'}.</span>
+          <span>{tag ?? ALL_POST_TAG}.</span>
           <Style.TagCount>{`(${currentTagPostCount})`}</Style.TagCount>
         </Style.TagTitle>
         <Style.TagList>

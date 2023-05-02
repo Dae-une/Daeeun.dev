@@ -1,6 +1,6 @@
 import PostGrid from 'components/PostGrid';
 import SearchInput from 'components/SearchInput';
-import METADATA from 'constants/constants';
+import { METADATA } from 'constants/constants';
 import { allPosts, Post } from 'contentlayer/generated';
 import useSearchValue from 'hooks/useSearchValue';
 import { NextSeo } from 'next-seo';
