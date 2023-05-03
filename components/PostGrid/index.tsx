@@ -13,9 +13,9 @@ const PostGrid: FC<PostGridProps> = ({ posts }) => {
   return (
     <Style.PostGird>
       {posts.map((post) => (
-        <motion.div variants={fadeInUp}>
+        <motion.div variants={fadeInUp} key={post._id}>
           <motion.div variants={fadeIn} initial="initial" whileInView="animate" exit="exit" viewport={{ amount: 0.6, once: true }}>
-            <PostCard post={post} key={post._id} />
+            <PostCard post={post} />
           </motion.div>
         </motion.div>
       ))}
