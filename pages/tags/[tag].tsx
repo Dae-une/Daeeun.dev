@@ -1,7 +1,7 @@
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
 import Title from 'components/Title';
-import { METADATA, POST_COUNT } from 'constants/constants';
+import { METADATA } from 'constants/constants';
 import { allPosts, Post } from 'contentlayer/generated';
 import { NextSeo } from 'next-seo';
 import { GetStaticPaths, GetStaticProps } from 'next/types';
@@ -45,7 +45,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      posts: posts.slice(0, POST_COUNT),
+      posts,
       tags,
       tag,
     },

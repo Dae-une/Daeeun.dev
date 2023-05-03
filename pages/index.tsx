@@ -6,7 +6,7 @@ import { allPosts, Post } from 'contentlayer/generated';
 import { FC } from 'react';
 import getAllTags, { Tags as TagsType } from 'utils/getAllTags';
 import { NextSeo } from 'next-seo';
-import { METADATA, POST_COUNT } from 'constants/constants';
+import { METADATA } from 'constants/constants';
 import generateRSS from 'utils/generateRssFeed';
 import Paigination from 'components/Common/Paigination';
 import { useRouter } from 'next/router';
@@ -36,6 +36,7 @@ const Home: FC<PostType> = ({ posts, tags, totalPage }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
+  const POST_COUNT = 10;
   const posts = allPosts.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
   const totalPage = Math.ceil(allPosts.length / POST_COUNT);
   const tags = getAllTags(allPosts);
@@ -43,7 +44,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      posts: posts.slice(0, POST_COUNT),
+      posts: posts.slice,
       totalPage,
       tags,
     },
