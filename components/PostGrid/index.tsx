@@ -1,4 +1,5 @@
 import PostCard from 'components/PostCard';
+import { fadeIn, fadeInUp } from 'constants/animation';
 import { Post } from 'contentlayer/generated';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
@@ -11,11 +12,13 @@ interface PostGridProps {
 const PostGrid: FC<PostGridProps> = ({ posts }) => {
   return (
     <Style.PostGird>
-      <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ type: 'spring', damping: 50 }}>
-        {posts.map((post) => (
-          <PostCard post={post} key={post._id} />
-        ))}
-      </motion.div>
+      {posts.map((post) => (
+        <motion.div variants={fadeInUp}>
+          <motion.div variants={fadeIn} initial="initial" whileInView="animate" exit="exit" viewport={{ amount: 0.6, once: true }}>
+            <PostCard post={post} key={post._id} />
+          </motion.div>
+        </motion.div>
+      ))}
     </Style.PostGird>
   );
 };

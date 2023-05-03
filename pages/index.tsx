@@ -8,8 +8,6 @@ import getAllTags, { Tags as TagsType } from 'utils/getAllTags';
 import { NextSeo } from 'next-seo';
 import { METADATA } from 'constants/constants';
 import generateRSS from 'utils/generateRssFeed';
-import Paigination from 'components/Common/Paigination';
-import { useRouter } from 'next/router';
 
 export interface PostType {
   posts: Post[];
@@ -18,17 +16,12 @@ export interface PostType {
 }
 
 const Home: FC<PostType> = ({ posts, tags, totalPage }) => {
-  const router = useRouter();
-  const { page } = router.query;
-  const currentPage = page ? Number(page) : 1;
-
   return (
     <>
       <NextSeo title="home" canonical={METADATA.meta.url} description={METADATA.meta.description} />
       <Title />
       <Tags tags={tags} currentTagPostCount={allPosts.length} />
       <PostGrid posts={posts} />
-      {/* {totalPage > 1 && <Paigination totalPage={totalPage} currentPage={currentPage} />} */}
     </>
   );
 };
