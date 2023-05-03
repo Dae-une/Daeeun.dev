@@ -4,9 +4,9 @@
         <description><![CDATA[성장을 위한 집필공간]]></description>
         <link>https://daeeun-dev.vercel.app/</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Wed, 03 May 2023 06:17:50 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 03 May 2023 06:51:14 GMT</lastBuildDate>
         <atom:link href="https://daeeun-dev.vercel.app//feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Wed, 03 May 2023 06:17:50 GMT</pubDate>
+        <pubDate>Wed, 03 May 2023 06:51:14 GMT</pubDate>
         <copyright><![CDATA[All rights reserved 2023, KIM DAE EUN]]></copyright>
         <language><![CDATA[ko_KR]]></language>
         <item>
@@ -82,8 +82,8 @@
         <item>
             <title><![CDATA[클로저 이해하기]]></title>
             <description><![CDATA[클로저 이해하기]]></description>
-            <link>https://daeeun-dev.vercel.app//blogs/Closures</link>
-            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Closures</guid>
+            <link>https://daeeun-dev.vercel.app//blogs/Closures</link>
+            <guid isPermaLink="true">https://daeeun-dev.vercel.app//blogs/Closures</guid>
             <pubDate>Fri, 27 Jan 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
