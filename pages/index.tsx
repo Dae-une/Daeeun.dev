@@ -19,7 +19,7 @@ const Home: FC<PostType> = ({ posts, tags }) => {
     <>
       <NextSeo title="home" canonical={METADATA.meta.url} description={METADATA.meta.description} />
       <Title />
-      <Tags tags={tags} currentTagPostCount={allPosts.length} />
+      <Tags tags={tags} currentTagPostCount={posts.length} />
       <PostGrid posts={posts} />
     </>
   );
