@@ -8,11 +8,11 @@ import blog__2023__01__about_useCallbackMdx from './blog__2023__01__about_useCal
 import blog__2023__04__jwt_refreshTokenMdx from './blog__2023__04__JWT_refreshToken.mdx.json' assert { type: 'json' }
 import blog__2023__04__setState_is_synchronousMdx from './blog__2023__04__setState_is_synchronous.mdx.json' assert { type: 'json' }
 import blog__2023__04__useBeforeunloadMdx from './blog__2023__04__useBeforeunload.mdx.json' assert { type: 'json' }
-import blog__2023__05__usePopupMdx from './blog__2023__05__usePopup.mdx.json' assert { type: 'json' }
 import blog__2023__02__cure_for_useState_hellMdx from './blog__2023__02__Cure_for_useState_Hell.mdx.json' assert { type: 'json' }
 import blog__2023__02__image_optimizationMdx from './blog__2023__02__Image_Optimization.mdx.json' assert { type: 'json' }
 import blog__2023__02__webpackLoaderMdx from './blog__2023__02__Webpack-loader.mdx.json' assert { type: 'json' }
 import blog__2023__02__a11yMdx from './blog__2023__02__a11y.mdx.json' assert { type: 'json' }
 import blog__2023__02__concureent_ui_patternMdx from './blog__2023__02__concureent_UI_Pattern.mdx.json' assert { type: 'json' }
+import blog__2023__05__usePopupMdx from './blog__2023__05__usePopup.mdx.json' assert { type: 'json' }
 
-export const allPosts = [blog__2023__01__closuresMdx, blog__2023__01__execution_contextMdx, blog__2023__01__staleWhileRevalidateMdx, blog__2023__01__why_is_setState_asynchronousMdx, blog__2023__01__about_useCallbackMdx, blog__2023__04__jwt_refreshTokenMdx, blog__2023__04__setState_is_synchronousMdx, blog__2023__04__useBeforeunloadMdx, blog__2023__05__usePopupMdx, blog__2023__02__cure_for_useState_hellMdx, blog__2023__02__image_optimizationMdx, blog__2023__02__webpackLoaderMdx, blog__2023__02__a11yMdx, blog__2023__02__concureent_ui_patternMdx]
+export const allPosts = [blog__2023__01__closuresMdx, blog__2023__01__execution_contextMdx, blog__2023__01__staleWhileRevalidateMdx, blog__2023__01__why_is_setState_asynchronousMdx, blog__2023__01__about_useCallbackMdx, blog__2023__04__jwt_refreshTokenMdx, blog__2023__04__setState_is_synchronousMdx, blog__2023__04__useBeforeunloadMdx, blog__2023__02__cure_for_useState_hellMdx, blog__2023__02__image_optimizationMdx, blog__2023__02__webpackLoaderMdx, blog__2023__02__a11yMdx, blog__2023__02__concureent_ui_patternMdx, blog__2023__05__usePopupMdx]

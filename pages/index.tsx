@@ -12,10 +12,9 @@ import generateRSS from 'utils/generateRssFeed';
 export interface PostType {
   posts: Post[];
   tags: TagsType;
-  totalPage: number;
 }
 
-const Home: FC<PostType> = ({ posts, tags, totalPage }) => {
+const Home: FC<PostType> = ({ posts, tags }) => {
   return (
     <>
       <NextSeo title="home" canonical={METADATA.meta.url} description={METADATA.meta.description} />
@@ -29,16 +28,13 @@ const Home: FC<PostType> = ({ posts, tags, totalPage }) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const POST_COUNT = 10;
   const posts = allPosts.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
-  const totalPage = Math.ceil(allPosts.length / POST_COUNT);
   const tags = getAllTags(allPosts);
   await generateRSS();
 
   return {
     props: {
       posts,
-      totalPage,
       tags,
     },
   };
