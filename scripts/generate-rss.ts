@@ -1,8 +1,9 @@
+/* eslint-disable import/no-relative-packages */
 import { Feed } from 'feed';
 import { writeFileSync } from 'fs';
-import { allPosts } from 'contentlayer/generated';
-import { METADATA } from 'constants/constants';
-import { contentToDescription } from 'utils/contentToDescription';
+import PostJson from '../.contentlayer/generated/Post/_index.json';
+import { METADATA } from '../constants/constants';
+import { contentToDescription } from '../utils/contentToDescription';
 
 const master = {
   name: METADATA.author.name,
@@ -25,7 +26,7 @@ const feed = new Feed({
   author: master,
 });
 
-allPosts.forEach((post) => {
+PostJson.forEach((post) => {
   feed.addItem({
     title: post.title,
     id: post.slug,
@@ -42,8 +43,8 @@ allPosts.forEach((post) => {
 feed.addCategory('Technologies');
 
 // Output: RSS 2.0
-writeFileSync('out/rss.xml', feed.rss2(), 'utf-8');
+writeFileSync('public/rss.xml', feed.rss2(), 'utf-8');
 // Output: Atom 1.0
-writeFileSync('out/rss-atom.xml', feed.atom1(), 'utf-8');
+writeFileSync('public/rss-atom.xml', feed.atom1(), 'utf-8');
 // Output: JSON Feed 1.0
-writeFileSync('out/feed.json', feed.json1(), 'utf-8');
+writeFileSync('public/feed.json', feed.json1(), 'utf-8');

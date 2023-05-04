@@ -34,7 +34,7 @@
     "mdx.d.ts",
     ".contentlayer/generated",
     "next-sitemap.config.js"
-  ],
+, "tsconfig.node.json"  ],
   "exclude": [
     "node_modules"
   ]

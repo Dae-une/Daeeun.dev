@@ -3,8 +3,8 @@
   "packageManager": "yarn@3.3.1",
   "scripts": {
     "dev": "next",
-    "postbuild": "next-sitemap",
-    "build": "next build && postbuild && yarn rss && next export"
+    "build": "next build && next-sitemap && yarn rss && next export",
+    "rss": "ts-node --project tsconfig.node.json ./scripts/generate-rss.ts"
   },
   "dependencies": {
     "@effect-ts/core": "^0.60.5",
