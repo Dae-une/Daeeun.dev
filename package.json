@@ -3,8 +3,8 @@
   "packageManager": "yarn@3.3.1",
   "scripts": {
     "dev": "next",
-    "build": "next build",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "build": "next build && postbuild && yarn rss && next export"
   },
   "dependencies": {
     "@effect-ts/core": "^0.60.5",
@@ -16,6 +16,7 @@
     "@next/mdx": "^13.1.2",
     "contentlayer": "^0.2.9",
     "emotion-reset": "^3.0.1",
+    "feed": "^4.2.2",
     "framer-motion": "^8.4.2",
     "next": "^13.1.2",
     "next-contentlayer": "^0.2.9",

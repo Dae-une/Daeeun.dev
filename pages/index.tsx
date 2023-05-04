@@ -17,7 +17,7 @@ export interface PostType {
 const Home: FC<PostType> = ({ posts, tags }) => {
   return (
     <>
-      <NextSeo title="home" canonical={METADATA.meta.url} description={METADATA.meta.description} />
+      <NextSeo title="home" canonical={METADATA.url} description={METADATA.description} />
       <Title />
       <Tags tags={tags} currentTagPostCount={posts.length} />
       <PostGrid posts={posts} />

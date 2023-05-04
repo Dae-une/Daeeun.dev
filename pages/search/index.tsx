@@ -21,7 +21,7 @@ const SearchPage: FC<SearchPageProps> = ({ posts }) => {
 
   return (
     <>
-      <NextSeo title="Search" canonical={`${METADATA.meta.url}/search`} />
+      <NextSeo title="Search" canonical={`${METADATA.url}/search`} />
       <SearchInput onChangeSearch={onChangeSearch} />
       <PostGrid posts={searchedPost} />
     </>

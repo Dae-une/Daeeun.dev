@@ -19,7 +19,7 @@ const TagPage: FC<TagPageProp> = ({ tags, tag, posts }) => {
 
   return (
     <>
-      <NextSeo title={tag} description={`${tag}에 관한 게시글 입니다.`} canonical={`${METADATA.meta.url}/tag/${tag}`} />
+      <NextSeo title={tag} description={`${tag}에 관한 게시글 입니다.`} canonical={`${METADATA.url}/tag/${tag}`} />
       <Title />
       <Tags tags={tags} currentTagPostCount={currentTagPostCount} />
       <PostGrid posts={posts} />

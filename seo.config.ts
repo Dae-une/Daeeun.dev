@@ -2,10 +2,10 @@ import { DefaultSeoProps } from 'next-seo';
 import { METADATA } from './constants/constants';
 
 const DEFAULT_SEO: DefaultSeoProps = {
-  titleTemplate: `%s | ${METADATA.headerTitle}`,
-  defaultTitle: METADATA.meta.title,
-  description: METADATA.meta.description,
-  canonical: METADATA.meta.url,
+  titleTemplate: `%s | ${METADATA.title}`,
+  defaultTitle: METADATA.title,
+  description: METADATA.description,
+  canonical: METADATA.url,
   additionalMetaTags: [
     {
       name: 'theme-color',
@@ -21,8 +21,8 @@ const DEFAULT_SEO: DefaultSeoProps = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: METADATA.meta.url,
-    siteName: METADATA.meta.title,
+    url: METADATA.url,
+    siteName: METADATA.title,
   },
 };
 
