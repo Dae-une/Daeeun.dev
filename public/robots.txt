@@ -1,2 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: https://daeeun-dev.vercel.app
+
+# Sitemaps
+Sitemap: https://daeeun-dev.vercel.app/sitemap.xml

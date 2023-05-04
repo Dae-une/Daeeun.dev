@@ -34,6 +34,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@giscus/react", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:2.2.6"],\
             ["@mdx-js/loader", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:2.2.1"],\
             ["@mdx-js/react", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:2.2.1"],\
+            ["@next/env", "npm:13.3.4"],\
             ["@next/mdx", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:13.1.2"],\
             ["@svgr/webpack", "npm:6.5.1"],\
             ["@types/node", "npm:18.11.18"],\
@@ -3422,6 +3423,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@next/env", "npm:13.1.2"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:13.3.4", {\
+          "packageLocation": "./.yarn/cache/@next-env-npm-13.3.4-d0c2c12093-442a06b958.zip/node_modules/@next/env/",\
+          "packageDependencies": [\
+            ["@next/env", "npm:13.3.4"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@next/mdx", [\
@@ -5011,6 +5019,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@giscus/react", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:2.2.6"],\
             ["@mdx-js/loader", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:2.2.1"],\
             ["@mdx-js/react", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:2.2.1"],\
+            ["@next/env", "npm:13.3.4"],\
             ["@next/mdx", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:13.1.2"],\
             ["@svgr/webpack", "npm:6.5.1"],\
             ["@types/node", "npm:18.11.18"],\
@@ -10538,7 +10547,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["next-sitemap", "virtual:e85ada2e2c8c2a4a717bee0eb9d49b98c293fbd322cfeebabb6aa9cd546338baa92bd7f7cc83337891178f259c5bf6212a2250c993c5d93223bee90363785942#npm:3.1.45"],\
             ["@corex/deepmerge", "npm:4.0.37"],\
-            ["@next/env", null],\
+            ["@next/env", "npm:13.3.4"],\
             ["@types/next", null],\
             ["@types/next__env", null],\
             ["minimist", "npm:1.2.7"],\

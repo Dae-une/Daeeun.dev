@@ -2074,6 +2074,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/env@npm:^13.3.4":
+  version: 13.3.4
+  resolution: "@next/env@npm:13.3.4"
+  checksum: 442a06b95814ffc483e60892bc105f4e381cbd78ae436b649d41cbb6fee87f30ce431743dedc83178a09ec00fc80dcbf154184b21ae20ffa268d1115212657af
+  languageName: node
+  linkType: hard
+
 "@next/mdx@npm:^13.1.2":
   version: 13.1.2
   resolution: "@next/mdx@npm:13.1.2"
@@ -3142,6 +3149,7 @@ __metadata:
     "@giscus/react": ^2.2.6
     "@mdx-js/loader": ^2.2.1
     "@mdx-js/react": ^2.2.1
+    "@next/env": ^13.3.4
     "@next/mdx": ^13.1.2
     "@svgr/webpack": ^6.5.1
     "@types/node": ^18.11.18

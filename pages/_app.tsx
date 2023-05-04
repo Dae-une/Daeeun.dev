@@ -7,10 +7,14 @@ import theme from 'styles/Theme';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../seo.config';
 import Footer from 'components/Footer';
+import Head from 'next/head';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={theme}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
       <DefaultSeo {...SEO} />
       <GlobalStyle />
       <Layout>
