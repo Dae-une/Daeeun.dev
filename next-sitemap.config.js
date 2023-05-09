@@ -3,6 +3,7 @@
 module.exports = {
   siteUrl: 'https://daeeun-dev.vercel.app',
   generateRobotsTxt: true,
+  sitemapSize: 7000,
   changefreq: 'daily',
   priority: 1,
   robotsTxtOptions: {
@@ -12,5 +13,6 @@ module.exports = {
         allow: '/',
       },
     ],
+    additionalSitemaps: ['https://daeeun-dev.vercel.app/sitemap.xml'],
   },
 };
