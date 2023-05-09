@@ -2,6 +2,12 @@ import { Html, Main, NextScript, Head } from 'next/document';
 
 import React from 'react';
 
+const themeInitializerScript = `
+      (function () {
+        document.body.dataset.theme = window.localStorage.getItem("theme") || (window.matchMedia?.('(prefers-color-scheme: dark)').matches ? "dark" : "light");
+      })();
+  `;
+
 const Document = () => {
   return (
     <Html lang="ko">
@@ -14,6 +20,7 @@ const Document = () => {
         <link rel="alternate" type="application/json" href="/feed.json" title="JSON Feed" />
       </Head>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <Main />
         <NextScript />
       </body>

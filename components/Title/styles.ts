@@ -26,6 +26,6 @@ export const UnderLine = styled.hr`
   width: 50px;
   height: 3px;
   margin-top: 2rem;
-  background-color: ${(props) => props.theme.colors.white[1]};
+  /* background-color: ${(props) => props.theme.colors.white[1]}; */
   border: none;
 `;

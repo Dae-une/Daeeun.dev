@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { themeAnimation } from 'constants/animation';
 import Link from 'next/link';
 
 export const HeaderWrapper = styled.div`
@@ -10,7 +11,8 @@ export const HeaderWrapper = styled.div`
   top: 0;
   align-items: center;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.colors.gray[2]};
+  background-color: var(--bg-main);
+  ${themeAnimation}
   z-index: 10;
 `;
 
@@ -24,7 +26,7 @@ export const HeaderLeft = styled.div`
 `;
 
 export const MainBtn = styled(Link)`
-  color: white;
+  color: inherit;
   font-weight: 900;
   font-size: 20px;
   font-style: italic;

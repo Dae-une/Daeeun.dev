@@ -13,7 +13,7 @@ const GiscusContainer = () => {
         strict="0"
         reactionsEnabled="1"
         emitMetadata="0"
-        theme="dark"
+        theme="transparent_dark"
         lang="ko"
       />
     </footer>

@@ -40,3 +40,5 @@ export const fadeInUp: Variants = {
     willChange: 'opacity, transform',
   },
 };
+
+export const themeAnimation = 'transition: background-color 0.2s ease-in, color 0.2s ease-in;';

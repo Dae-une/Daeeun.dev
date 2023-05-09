@@ -10,7 +10,6 @@ export const SearchInput = styled.input`
   display: block;
   width: 100%;
   padding: 20px 16px;
-  background-color: transparent;
   border: 1px solid white;
   border-radius: 8px;
   color: white;

@@ -7,15 +7,34 @@ const style = css`
   html {
     scroll-behavior: smooth;
   }
+
+  body[data-theme='light'] {
+    --bg-main: white;
+    --bg-converse: #202125;
+    --text-main: #202125;
+    --text-converse: white;
+    --code-string: #e56ef7;
+  }
+
+  body[data-theme='dark'] {
+    --bg-main: #202125;
+    --bg-converse: white;
+    --text-main: white;
+    --text-converse: #202125;
+    --code-string: #cae797;
+  }
+
   body {
-    background-color: #202125;
-    color: white;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
+    margin: 0 auto;
+    padding: 0;
     position: relative;
     max-width: 52rem;
-    margin: 0 auto;
     min-height: 42.5rem;
-    padding: 0;
   }
+
   button {
     border: none;
     background: none;
@@ -35,13 +54,13 @@ const style = css`
   }
   code {
     background-color: #45658c;
-    color: #eff4f9;
+    color: var(--text-main);
     font-weight: 700;
     border-radius: 6px;
     padding: 2px 5px;
   }
   pre {
-    border: 1px solid white;
+    border: 1px solid var(--text-main);
     border-radius: 8px;
     padding: 20px;
     text-align: left;
@@ -105,7 +124,7 @@ const style = css`
   }
 
   .hljs-string {
-    color: #cae797;
+    color: var(--code-string);
   }
 
   .hljs-comment {

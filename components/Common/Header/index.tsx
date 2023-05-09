@@ -4,6 +4,8 @@ import Link from 'next/link';
 import * as Style from './styles';
 import Hamburger from '../../../static/svg/hamburger.svg';
 import SearchIcon from '../../../static/svg/search.svg';
+import ThemeSwitch from '../ThemeSwitch';
+import { SVGEqualTheme } from '../ColoredSVG';
 
 function Header() {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -19,11 +21,12 @@ function Header() {
         <Style.HeaderLeft>
           <Style.SVGWrapper>
             <Link href="/search">
-              <SearchIcon />
+              <SVGEqualTheme SVG={SearchIcon} />
             </Link>
           </Style.SVGWrapper>
+          <ThemeSwitch />
           <Style.SVGWrapper onClick={toggleSideBar}>
-            <Hamburger />
+            <SVGEqualTheme SVG={Hamburger} />
           </Style.SVGWrapper>
         </Style.HeaderLeft>
       </Style.HeaderWrapper>

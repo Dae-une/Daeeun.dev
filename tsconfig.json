@@ -26,15 +26,15 @@
     "baseUrl": "."
   },
   "include": [
+    "./types/**.d.ts",
     "next-env.d.ts",
-    "svg.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "next.config.js",
-    "mdx.d.ts",
     ".contentlayer/generated",
-    "next-sitemap.config.js"
-, "tsconfig.node.json"  ],
+    "next-sitemap.config.js",
+    "tsconfig.node.json"
+  ],
   "exclude": [
     "node_modules"
   ]

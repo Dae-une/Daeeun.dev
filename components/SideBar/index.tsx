@@ -1,49 +1,12 @@
 import React, { FC } from 'react';
 import * as Style from './styles';
-import GithubSVG from '../../static/svg/github.svg';
-import EmailSVG from '../../static/svg/email.svg';
-import RSSSVG from '../../static/svg/rss.svg';
+import { SVGConverseTheme } from 'components/Common/ColoredSVG';
+import { Icons, Links } from 'constants/SideBar';
 
 export interface SideBarProps {
   isOpen: boolean;
   toggle: () => void;
 }
-
-const Icons = [
-  {
-    title: 'github',
-    href: 'https://github.com/Dae-une',
-    svg: <GithubSVG />,
-  },
-  {
-    title: 'email',
-    href: 'mailto:chablisbin94@gmail.com',
-    svg: <EmailSVG />,
-  },
-  {
-    title: 'rss',
-    href: '/feed.xml',
-    svg: <RSSSVG />,
-  },
-];
-
-const Links = [
-  {
-    title: 'Home.',
-    href: '/',
-    noopener: false,
-  },
-  {
-    title: 'Velog.',
-    href: 'https://velog.io/@dae_eun2',
-    noopener: true,
-  },
-  {
-    title: 'About.',
-    href: 'https://portfolio-dae-une.vercel.app',
-    noopener: true,
-  },
-];
 
 const SideBar: FC<SideBarProps> = ({ isOpen, toggle }) => {
   return (
@@ -53,7 +16,7 @@ const SideBar: FC<SideBarProps> = ({ isOpen, toggle }) => {
         <Style.SideBarLinks>
           {Icons.map((link) => (
             <Style.SdieBarItem key={link.title} href={link.href} target="_blank" rel="noopener">
-              {link.svg}
+              <SVGConverseTheme SVG={link.svg} />
             </Style.SdieBarItem>
           ))}
         </Style.SideBarLinks>
