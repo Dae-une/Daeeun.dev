@@ -5,7 +5,7 @@ import Link from 'next/link';
 export const HeaderWrapper = styled.div`
   height: 5rem;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 40px;
   display: flex;
   position: sticky;
   top: 0;
