@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const SearchWrapper = styled.div`
   position: relative;
-  padding: 0 40px;
   margin-top: 4rem;
 `;
 

@@ -44,7 +44,7 @@ const style = css`
     margin: 0 auto;
     padding: 0;
     position: relative;
-    max-width: 52rem;
+    max-width: 45rem;
     min-height: 42.5rem;
   }
 

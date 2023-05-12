@@ -15,7 +15,6 @@ const PostLayout: FC<LayoutProps> = ({ children }) => {
         position: relative;
         width: 100%;
         margin: 50px auto;
-        padding: 20px;
         word-break: keep-all;
         overflow-wrap: break-word;
         line-height: 1.7;

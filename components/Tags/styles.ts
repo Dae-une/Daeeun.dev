@@ -6,7 +6,6 @@ export const TagList = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1.5rem;
-  padding: 0 40px;
   width: 100%;
 `;
 
