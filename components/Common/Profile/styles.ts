@@ -5,7 +5,7 @@ import Link from 'next/link';
 export const ProfileWrapper = styled.div`
   display: grid;
   grid-template-columns: 70px auto;
-  margin: 40px;
+  margin: 40px 0;
   padding: 1rem;
   gap: 2rem;
   background-color: var(--profile-cover);
