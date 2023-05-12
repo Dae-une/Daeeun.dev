@@ -25,9 +25,7 @@ export const HeaderLeft = styled.div`
 export const MainBtn = styled(Link)`
   color: inherit;
   font-weight: 900;
-  font-size: 20px;
-  font-style: italic;
-  &:hover {
-    text-decoration: underline;
-  }
+  font-size: 2rem;
+  /* font-style: italic; */
+  text-decoration: none;
 `;
