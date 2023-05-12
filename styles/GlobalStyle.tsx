@@ -20,6 +20,7 @@ const style = css`
   body[data-theme='light'] {
     --bg-main: white;
     --bg-converse: #202125;
+    --profile-cover: #f6f6f6;
     --text-main: #202125;
     --text-converse: white;
     --code-string: #cae797;
@@ -29,6 +30,7 @@ const style = css`
   body[data-theme='dark'] {
     --bg-main: #202125;
     --bg-converse: white;
+    --profile-cover: #30313f;
     --text-main: white;
     --text-converse: #202125;
     --code-string: #cae797;

@@ -1,6 +1,6 @@
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
-import Title from 'components/Title';
+import Profile from 'components/Common/Profile';
 import { GetStaticProps } from 'next';
 import { allPosts, Post } from 'contentlayer/generated';
 import { FC } from 'react';
@@ -18,7 +18,7 @@ const Home: FC<PostType> = ({ posts, tags }) => {
   return (
     <>
       <NextSeo title="home" canonical={METADATA.url} description={METADATA.description} />
-      <Title />
+      <Profile />
       <Tags tags={tags} currentTagPostCount={posts.length} />
       <PostGrid posts={posts} />
     </>

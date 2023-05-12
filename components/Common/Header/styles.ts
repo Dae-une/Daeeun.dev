@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { themeAnimation } from 'constants/animation';
 import Link from 'next/link';
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.header`
   height: 5rem;
   width: 100%;
   padding: 0 40px;

@@ -1,6 +1,6 @@
 import PostGrid from 'components/PostGrid';
 import Tags from 'components/Tags';
-import Title from 'components/Title';
+import Profile from 'components/Common/Profile';
 import { METADATA } from 'constants/constants';
 import { allPosts, Post } from 'contentlayer/generated';
 import { NextSeo } from 'next-seo';
@@ -20,7 +20,7 @@ const TagPage: FC<TagPageProp> = ({ tags, tag, posts }) => {
   return (
     <>
       <NextSeo title={tag} description={`${tag}에 관한 게시글 입니다.`} canonical={`${METADATA.url}/tag/${tag}`} />
-      <Title />
+      <Profile />
       <Tags tags={tags} currentTagPostCount={currentTagPostCount} />
       <PostGrid posts={posts} />
     </>
