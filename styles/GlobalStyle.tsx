@@ -1,6 +1,15 @@
 import { Global, css } from '@emotion/react';
 
 const style = css`
+  :root {
+    @font-face {
+      font-family: 'Pretendard';
+      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+    }
+    font-family: 'Pretendard';
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+  }
   * {
     box-sizing: border-box;
   }
