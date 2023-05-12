@@ -42,3 +42,18 @@ export const fadeInUp: Variants = {
 };
 
 export const themeAnimation = 'transition: background-color 0.2s ease-in, color 0.2s ease-in;';
+
+export const comeUp: Variants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+    transition: { type: 'spring', damping: 20 },
+    willChange: 'opacity, y',
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', damping: 20 },
+    willChange: 'opacity, y',
+  },
+};

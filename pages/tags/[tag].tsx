@@ -7,6 +7,8 @@ import { NextSeo } from 'next-seo';
 import { GetStaticPaths, GetStaticProps } from 'next/types';
 import React, { FC } from 'react';
 import getAllTags, { Tags as TagsType } from 'utils/getAllTags';
+import SearchInput from 'components/Common/SearchInput';
+import useSearchValue from 'hooks/useSearchValue';
 
 interface TagPageProp {
   posts: Post[];
@@ -15,14 +17,20 @@ interface TagPageProp {
 }
 
 const TagPage: FC<TagPageProp> = ({ tags, tag, posts }) => {
-  const currentTagPostCount = posts.length;
+  const { searchValue, onChangeSearch } = useSearchValue();
+
+  const searchedPost = posts.filter((post) => {
+    const keyword = `${post.title} ${post.summary} ${post.tags.join(' ')}`;
+    return keyword.toLowerCase().includes(searchValue.toLowerCase());
+  });
 
   return (
     <>
       <NextSeo title={tag} description={`${tag}에 관한 게시글 입니다.`} canonical={`${METADATA.url}/tag/${tag}`} />
       <Profile />
-      <Tags tags={tags} currentTagPostCount={currentTagPostCount} />
-      <PostGrid posts={posts} />
+      <SearchInput onChangeSearch={onChangeSearch} />
+      <Tags tags={tags} />
+      <PostGrid posts={searchValue ? searchedPost : posts} />
     </>
   );
 };

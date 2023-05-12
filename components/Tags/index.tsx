@@ -3,47 +3,43 @@ import { motion } from 'framer-motion';
 import { Tags as TagsType } from 'utils/getAllTags';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
-import { ALL_POST_TAG } from 'constants/constants';
+
+interface TagItmeProps {
+  tagName: string;
+  isSelected: boolean;
+}
+
+const TagItem: FC<TagItmeProps> = ({ tagName, isSelected }) => {
+  return (
+    <Style.TagLink href={`/tags/${tagName}`} isSelected={isSelected}>
+      <span>{tagName}</span>
+    </Style.TagLink>
+  );
+};
 
 interface TagsProps {
   tags: TagsType;
-  currentTagPostCount: number;
 }
 
-const Tags: FC<TagsProps> = ({ tags, currentTagPostCount }) => {
+const Tags: FC<TagsProps> = ({ tags }) => {
   const router = useRouter();
-  const { tag } = router.query;
+  const tag = router.query.tag || 'All';
+
+  const isSelected = (tagName: string) => {
+    return tag === tagName;
+  };
 
   return (
-    <Style.TagWrapper>
-      <motion.div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          margin: 'auto',
-        }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: 'spring', damping: 20 }}
-      >
-        <Style.TagTitle>
-          <span>{tag ?? ALL_POST_TAG}.</span>
-          <Style.TagCount>{`(${currentTagPostCount})`}</Style.TagCount>
-        </Style.TagTitle>
-        <Style.TagList>
-          <Style.TagItem href="/">
-            <span>All Posts.</span>
-          </Style.TagItem>
-          {Object.keys(tags).map((tag) => (
-            <Style.TagItem href={`/tags/${tag}`} key={tag}>
-              <span>{tag}</span>
-              <Style.TagCount>{`(${tags[tag]})`}</Style.TagCount>
-            </Style.TagItem>
-          ))}
-        </Style.TagList>
-      </motion.div>
-    </Style.TagWrapper>
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', damping: 20 }}>
+      <Style.TagList>
+        <Style.TagLink href="/" isSelected={isSelected('All')}>
+          <span>All</span>
+        </Style.TagLink>
+        {Object.keys(tags).map((tag) => (
+          <TagItem tagName={tag} key={tag} isSelected={isSelected(tag)} />
+        ))}
+      </Style.TagList>
+    </motion.div>
   );
 };
 

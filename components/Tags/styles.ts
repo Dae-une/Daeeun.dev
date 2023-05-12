@@ -1,37 +1,27 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 
-export const TagWrapper = styled.div`
-  margin: 4rem 0;
-`;
-
-export const TagTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 2.3rem;
-  font-style: italic;
-  font-weight: bold;
-`;
-
-export const TagCount = styled.div`
-  font-size: 1rem;
-  line-height: 10px;
-  font-style: italic;
-`;
-
 export const TagList = styled.div`
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  column-gap: 1.4rem;
-  row-gap: 1rem;
-  margin-top: 3rem;
-  padding: 0 20px;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0 40px;
   width: 100%;
 `;
 
-export const TagItem = styled(Link)`
+interface TagLinkProps {
+  isSelected: boolean;
+}
+
+export const TagLink = styled(Link)<TagLinkProps>`
   text-decoration: none;
-  color: inherit;
+  padding: 0.5rem 1rem;
+  border: 0px;
+  border-radius: 0.25rem;
+  color: var(--colors-tagColor);
+  font-size: 0.875rem;
   display: flex;
+  color: #3b1de2;
+  background-color: ${({ isSelected }) => (isSelected ? '#bcb2f5' : '#edeafc')};
 `;
