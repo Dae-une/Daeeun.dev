@@ -7,11 +7,8 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   padding: 0 40px;
   display: flex;
-  position: sticky;
-  top: 0;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--bg-main);
   ${themeAnimation}
   z-index: 10;
 `;

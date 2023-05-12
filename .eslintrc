@@ -32,7 +32,7 @@
     "react/function-component-definition": "off",
     "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "warn",
+    "@typescript-eslint/no-use-before-define": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "off",
     "import/prefer-default-export": "off",
@@ -44,6 +44,6 @@
     "react/self-closing-comp": "off",
     "import/order": "off",
     "array-callback-return": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
   }
 }

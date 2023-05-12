@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-type ThemeType = 'light' | 'dark';
+export type ThemeType = 'light' | 'dark';
 
 const useThemeSwitch = () => {
   const [theme, setTheme] = useState<ThemeType>('light');
