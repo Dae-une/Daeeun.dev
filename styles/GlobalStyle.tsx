@@ -168,21 +168,18 @@ const style = css`
   }
 
   .toc-h1 {
+    font-size: 14px;
   }
   .toc-h2 {
+    font-size: 14px;
     margin-left: 15px;
     padding-left: 6px;
-    border-left: 1px solid gray;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
   }
 
   .toc-h3 {
+    font-size: 14px;
     margin-left: 30px;
-    padding-left: 6px;
-    border-left: 1px solid gray;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
+    padding-left: 6px; */
   }
 `;
 
